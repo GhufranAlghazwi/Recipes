@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fridge"
+        android:enabled="true"
+        android:icon="@drawable/fridge__1_"
+        android:title="Fridge" />
+    <item
+        android:id="@+id/recipes"
+        android:enabled="true"
+        android:icon="@drawable/soup"
+        android:title="Recipes" />
+    <item
+        android:id="@+id/likes"
+        android:enabled="true"
+        android:icon="@drawable/heart"
+        android:title="Likes" />
+    <item
+        android:id="@+id/ProfileFragment"
+        android:enabled="true"
+        android:icon="@drawable/user"
+        android:title="Profile" />
+</menu>
