@@ -7,6 +7,7 @@ import android.os.Handler
 import org.tuwaiq.recipes.databinding.ActivitySplashBinding
 import org.tuwaiq.recipes.view.MainActivity
 import org.tuwaiq.recipes.view.home.HomeActivity
+import org.tuwaiq.recipes.view.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
     lateinit var binding: ActivitySplashBinding
@@ -15,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
 
         Handler().postDelayed({
-            startActivity(Intent(this, HomeActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         },2000)
 

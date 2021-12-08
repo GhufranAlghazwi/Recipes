@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "874249110958",
+    "project_id": "recipes-b99ca",
+    "storage_bucket": "recipes-b99ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874249110958:android:3257adaa1750fd196eb43f",
+        "android_client_info": {
+          "package_name": "org.tuwaiq.recipes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874249110958-3vq9r92tn928t2lm9mbndobneb2j145h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWX8N-w1sEQYYSgbFL-uqYwxiIvIIegOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874249110958-3vq9r92tn928t2lm9mbndobneb2j145h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recipes">
         <activity
+            android:name=".view.login.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.home.HomeActivity"
             android:exported="false" />
         <activity
@@ -23,9 +26,7 @@
         </activity>
         <activity
             android:name=".view.MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"/>
     </application>
 
 </manifest>
