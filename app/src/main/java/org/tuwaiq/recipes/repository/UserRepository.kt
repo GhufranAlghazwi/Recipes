@@ -7,10 +7,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class UserRepository {
     var auth = Firebase.auth
+    val db = Firebase.firestore
 
     fun login(email: String, password: String): MutableLiveData<Boolean> {
         var mLiveData = MutableLiveData<Boolean>()
@@ -25,5 +27,26 @@ class UserRepository {
         return mLiveData
     }
 
-//    fun register(){}
+     fun register(name: String, email: String, password: String): MutableLiveData<Boolean> {
+        var mLiveData = MutableLiveData<Boolean>()
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val user = hashMapOf(
+                        "email" to auth.currentUser?.email.toString(),
+                        "fullname" to name
+                    )
+                    db.collection("users").document(auth.currentUser?.uid.toString())
+                        .set(user)
+                }
+                mLiveData.postValue(true)
+            }.addOnFailureListener {
+                println(it.message)
+                mLiveData.postValue(false)
+            }
+
+        return mLiveData
+    }
+
+
 }

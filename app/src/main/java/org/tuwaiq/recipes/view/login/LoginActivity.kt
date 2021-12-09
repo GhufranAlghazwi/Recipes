@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityLoginBinding
 import org.tuwaiq.recipes.view.home.HomeActivity
+import org.tuwaiq.recipes.view.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
@@ -38,6 +39,10 @@ class LoginActivity : AppCompatActivity() {
                         }
                     })
             }
+        }
+
+        binding.registerNowTextView.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         setContentView(binding.root)
