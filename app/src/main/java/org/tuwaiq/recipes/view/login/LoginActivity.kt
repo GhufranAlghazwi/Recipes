@@ -9,6 +9,7 @@ import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityLoginBinding
 import org.tuwaiq.recipes.view.home.HomeActivity
 import org.tuwaiq.recipes.view.register.RegisterActivity
+import org.tuwaiq.recipes.view.resetpassword.ResetPasswordActivity
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
@@ -43,6 +44,10 @@ class LoginActivity : AppCompatActivity() {
 
         binding.registerNowTextView.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
+        binding.forgetPasswordTextView.setOnClickListener {
+            startActivity(Intent(this, ResetPasswordActivity::class.java))
         }
 
         setContentView(binding.root)
