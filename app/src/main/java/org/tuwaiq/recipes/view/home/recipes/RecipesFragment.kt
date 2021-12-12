@@ -31,17 +31,10 @@ class RecipesFragment : Fragment() {
             startActivity(Intent(context,VegeRecipesActivity::class.java))
         }
 
-
-//        vm.getVegRecipes().observe(viewLifecycleOwner,{list->
-//            RV.adapter=RecipesAdapter(list)
-//        })
-//
-
-//
-//        vm.getRecipes().observe(viewLifecycleOwner,{
-//            RV.adapter = RecipesAdapter(it!!)
-//            println("RECIPES from rapidAPI")
-//        })
+        var mainCard = v.findViewById<CardView>(R.id.mainCard)
+        mainCard.setOnClickListener {
+            startActivity(Intent(context, MainDishesActivity::class.java))
+        }
 
 
 

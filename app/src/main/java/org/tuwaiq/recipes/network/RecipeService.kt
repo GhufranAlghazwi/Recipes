@@ -6,8 +6,14 @@ import retrofit2.http.GET
 
 interface RecipeService {
 
-    @GET("recipes")
+    @GET("recipes/?category=vegetarian")
     fun getVegRecipes(): Call<List<Recipe>>
+
+    @GET("recipes/?category=main dish")
+    fun getMainDishes(): Call<List<Recipe>>
+
+    @GET("recipes/?category=dessert")
+    fun getDessert(): Call<List<Recipe>>
 
     @GET("recipes/random?tags=vegetarian&number=20")
     fun getVegRecipes2(): Call<List<Recipe>>
