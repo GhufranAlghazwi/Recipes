@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
 
         Handler().postDelayed({
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         },2000)
 

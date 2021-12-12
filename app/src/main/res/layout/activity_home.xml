@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".view.home.HomeActivity">
 
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bNavView"
         android:layout_width="409dp"
@@ -16,4 +18,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/home_menu"
         app:labelVisibilityMode="selected"/>
+
+    <FrameLayout
+        android:id="@+id/mFrameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bNavView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

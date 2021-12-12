@@ -1,9 +1,5 @@
 package org.tuwaiq.recipes.repository
 
-import android.content.Intent
-import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -28,7 +24,7 @@ class UserRepository {
         return mLiveData
     }
 
-     fun register(name: String, email: String, password: String): MutableLiveData<Boolean> {
+    fun register(name: String, email: String, password: String): MutableLiveData<Boolean> {
         var mLiveData = MutableLiveData<Boolean>()
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -49,7 +45,7 @@ class UserRepository {
         return mLiveData
     }
 
-    fun resetPassword(email: String): MutableLiveData<Boolean>{
+    fun resetPassword(email: String): MutableLiveData<Boolean> {
         var mLiveData = MutableLiveData<Boolean>()
 
         var mAuth: FirebaseAuth?
@@ -64,6 +60,20 @@ class UserRepository {
                 }
             }
 
+        return mLiveData
+    }
+
+    fun checkLogin(user: FirebaseUser?): MutableLiveData<Boolean> {
+        var mLiveData = MutableLiveData<Boolean>()
+//        var user = auth.currentUser
+        if (user == null){
+            mLiveData.postValue(false)
+            println("No user logged in repo")
+        }
+        else{
+            mLiveData.postValue(true)
+            println(" logged in repo")
+        }
         return mLiveData
     }
 
