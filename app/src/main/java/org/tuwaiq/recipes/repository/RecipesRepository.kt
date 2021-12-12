@@ -49,4 +49,19 @@ class RecipesRepository {
 
         return mutableLiveData
     }
+
+    fun getDesserts(): MutableLiveData<List<Recipe>>{
+        var mutableLiveData=MutableLiveData<List<Recipe>>()
+
+        recipeService.getDessert().enqueue(object : Callback<List<Recipe>> {
+            override fun onResponse(call: Call<List<Recipe>>, response: Response<List<Recipe>>) {
+                mutableLiveData.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<Recipe>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+        return mutableLiveData
+    }
 }

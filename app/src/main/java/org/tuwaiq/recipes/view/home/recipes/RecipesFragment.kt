@@ -36,6 +36,11 @@ class RecipesFragment : Fragment() {
             startActivity(Intent(context, MainDishesActivity::class.java))
         }
 
+        var dessertCard = v.findViewById<CardView>(R.id.dessertCard)
+        dessertCard.setOnClickListener {
+            startActivity(Intent(context, DessertsActivity::class.java))
+        }
+
 
 
 

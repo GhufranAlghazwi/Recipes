@@ -19,4 +19,8 @@ class RecipesViewModel: ViewModel() {
         return recipesRepository.getMainDishes()
     }
 
+    fun getDessert(): LiveData<List<Recipe>> {
+        return recipesRepository.getDesserts()
+    }
+
 }
