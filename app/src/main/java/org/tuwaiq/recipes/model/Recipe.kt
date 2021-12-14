@@ -1,5 +1,7 @@
 package org.tuwaiq.recipes.model
 
+import java.io.Serializable
+
 data class Recipe(
     var title: String,
     var image: String,
@@ -9,5 +11,4 @@ data class Recipe(
     var ingredients: String,
     var uid:String,
     var id: String
-) {
-}
+): Serializable

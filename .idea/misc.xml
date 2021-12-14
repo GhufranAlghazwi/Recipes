@@ -8,6 +8,7 @@
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/activity_main_dishes.xml" value="0.125" />
+        <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/activity_recipe_details.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/activity_reset_password.xml" value="0.2" />
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/activity_splash.xml" value="0.25" />
@@ -19,7 +20,7 @@
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/fragment_search.xml" value="0.1" />
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/fragment_unlogged.xml" value="0.1" />
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/fragment_unlogged_add.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/list_item_recipe.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/list_item_recipe.xml" value="0.1" />
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/layout/list_row_search.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/menu/home_menu.xml" value="0.1" />
         <entry key="..\:/Users/gahg/Tuwaiq/capstone2/Recipes/app/src/main/res/menu/profile_menu.xml" value="0.1" />
