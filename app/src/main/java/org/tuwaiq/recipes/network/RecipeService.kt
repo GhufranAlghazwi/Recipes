@@ -1,8 +1,10 @@
 package org.tuwaiq.recipes.network
 
+import org.tuwaiq.recipes.model.Ingredient
 import org.tuwaiq.recipes.model.Recipe
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface RecipeService {
 
@@ -15,6 +17,9 @@ interface RecipeService {
     @GET("recipes/?category=dessert")
     fun getDessert(): Call<List<Recipe>>
 
-//    @GET("recipes/random?tags=vegetarian&number=20")
-//    fun getVegRecipes2(): Call<List<Recipe>>
+    @GET("recipes")
+    fun getAllRecipes(): Call<List<Recipe>>
+
+    @GET("recipes")
+    fun search(@Query("title") key: String): Call<List<Recipe>>
 }

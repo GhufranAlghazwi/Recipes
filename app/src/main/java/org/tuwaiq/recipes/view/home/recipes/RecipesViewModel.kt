@@ -1,12 +1,10 @@
 package org.tuwaiq.recipes.view.home.recipes
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import okhttp3.*
+import org.tuwaiq.recipes.model.Ingredient
 import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.repository.RecipesRepository
-import java.io.IOException
 
 class RecipesViewModel: ViewModel() {
     var recipesRepository = RecipesRepository()
@@ -22,5 +20,11 @@ class RecipesViewModel: ViewModel() {
     fun getDessert(): LiveData<List<Recipe>> {
         return recipesRepository.getDesserts()
     }
+
+    fun getAll(): LiveData<List<Recipe>>{
+        return recipesRepository.getAllRecipes()
+    }
+
+
 
 }

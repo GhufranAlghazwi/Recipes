@@ -1,13 +1,18 @@
 package org.tuwaiq.recipes.view.home
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.fragment.app.FragmentTransaction.TRANSIT_ENTER_MASK
+import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityHomeBinding
+import org.tuwaiq.recipes.view.home.addRecipe.AddRecipeActivity
 import org.tuwaiq.recipes.view.home.recipes.RecipesFragment
+import org.tuwaiq.recipes.view.home.search.SearchFragment
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
@@ -19,16 +24,19 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
 
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mFrameLayout, RecipesFragment())
+            .commit()
+
         binding.bNavView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ProfileFragment -> {
                     vm.checkLogin(currentUser).observe(this, {
-                        if (it){
+                        if (it) {
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.mFrameLayout, ProfileFragment())
                                 .commit()
-                        }
-                        else{
+                        } else {
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.mFrameLayout, UnloggedFragment())
                                 .commit()
@@ -42,9 +50,28 @@ class HomeActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
-                R.id.fridge -> {
+                R.id.addRecipe -> {
+                    vm.checkLogin(currentUser).observe(this, {
+                        if (it) {
+                            startActivity(Intent(this, AddRecipeActivity::class.java))
+                        }
+                        else{
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.mFrameLayout, UnloggedFragment())
+                                .commit()
+                        }
+                    })
+                    true
+                }
+//                R.id.fridge -> {
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.mFrameLayout, FridgeFragment())
+//                        .commit()
+//                    true
+//                }
+                R.id.search -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.mFrameLayout, FridgeFragment())
+                        .replace(R.id.mFrameLayout, SearchFragment())
                         .commit()
                     true
                 }

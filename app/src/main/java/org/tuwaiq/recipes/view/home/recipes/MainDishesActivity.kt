@@ -28,6 +28,8 @@ class MainDishesActivity : AppCompatActivity() {
             mRecyclerView.adapter = RecipesAdapter(it)
         })
 
+
+
         setContentView(binding.root)
     }
 }

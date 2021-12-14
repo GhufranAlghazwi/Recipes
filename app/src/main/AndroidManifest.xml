@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recipes">
         <activity
+            android:name=".view.recipeDetails.RecipeDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.home.addRecipe.AddRecipeActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.home.recipes.DessertsActivity"
             android:exported="false" />
         <activity
