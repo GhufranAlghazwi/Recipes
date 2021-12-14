@@ -22,20 +22,17 @@ class RecipeDetailsActivity : AppCompatActivity() {
 
         Picasso.get().load(recipe.image).into(binding.imageViewDetails)
         binding.textViewDetailsName.text = recipe.title
-        binding.textViewDetailsIngr.text = "Ingredients\n"+recipe.ingredients
-        binding.textViewDetailsInstructions.text = "Instructions\n${recipe.instructions}"
+//        binding.textViewDetailsIngr.text = "Ingredients\n"+recipe.ingredients
+//        binding.textViewDetailsInstructions.text = "Instructions\n${recipe.instructions}"
 
+        binding.expandableIngrTV.text = recipe.ingredients
         cardViewIngr.setOnClickListener {
-            if(!expandableIngr.isVisible){
-                expandableIngr.isVisible=true
-                binding.expandableIngrTV.text = recipe.ingredients
-            }
-            else{
-                expandableIngr.isVisible=false
-            }
+            expandableIngr.isVisible = !expandableIngr.isVisible
+        }
 
-
-
+        binding.expandableInstructionsTV.text = recipe.instructions
+        binding.cardViewInstruction.setOnClickListener {
+            binding.expandablInstruction.isVisible = !binding.expandablInstruction.isVisible
         }
         setContentView(binding.root)
     }

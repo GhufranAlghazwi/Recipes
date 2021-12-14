@@ -8,16 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import org.tuwaiq.recipes.R
-import org.tuwaiq.recipes.model.Recipe
-import org.tuwaiq.recipes.network.RecipeService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class RecipesFragment : Fragment() {
@@ -26,9 +17,9 @@ class RecipesFragment : Fragment() {
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_recipes, container, false)
 
-        var vegeCard = v.findViewById<CardView>(R.id.vegCard1)
+        var vegeCard = v.findViewById<CardView>(R.id.drinksCard)
         vegeCard.setOnClickListener {
-            startActivity(Intent(context,VegeRecipesActivity::class.java))
+            startActivity(Intent(context,DrinksActivity::class.java))
         }
 
         var mainCard = v.findViewById<CardView>(R.id.mainCard)

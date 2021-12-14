@@ -8,8 +8,8 @@ import retrofit2.http.Query
 
 interface RecipeService {
 
-    @GET("recipes/?category=vegetarian")
-    fun getVegRecipes(): Call<List<Recipe>>
+    @GET("recipes/?category=drink")
+    fun getDrinks(): Call<List<Recipe>>
 
     @GET("recipes/?category=main dish")
     fun getMainDishes(): Call<List<Recipe>>

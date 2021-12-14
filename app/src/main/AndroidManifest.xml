@@ -24,7 +24,7 @@
             android:name=".view.home.recipes.MainDishesActivity"
             android:exported="false" />
         <activity
-            android:name=".view.home.recipes.VegeRecipesActivity"
+            android:name=".view.home.recipes.DrinksActivity"
             android:exported="false" />
         <activity
             android:name=".view.resetpassword.ResetPasswordActivity"

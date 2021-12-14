@@ -1,7 +1,6 @@
 package org.tuwaiq.recipes.repository
 
 import androidx.lifecycle.MutableLiveData
-import org.tuwaiq.recipes.model.Ingredient
 import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.network.API
 import org.tuwaiq.recipes.network.RecipeService
@@ -15,11 +14,11 @@ class RecipesRepository {
     val recipeService= API.getInstance().create(RecipeService::class.java)
     val ingrService = SpoonacularAPI.getInstance().create(RecipeService::class.java)
 
-    fun getVegeRecipes(): MutableLiveData<List<Recipe>>{
+    fun getDrinks(): MutableLiveData<List<Recipe>>{
 
         var mutableLiveData=MutableLiveData<List<Recipe>>()
 
-        recipeService.getVegRecipes().enqueue(object : Callback<List<Recipe>> {
+        recipeService.getDrinks().enqueue(object : Callback<List<Recipe>> {
             override fun onResponse(call: Call<List<Recipe>>, response: Response<List<Recipe>>) {
                 mutableLiveData.postValue(response.body())
             }

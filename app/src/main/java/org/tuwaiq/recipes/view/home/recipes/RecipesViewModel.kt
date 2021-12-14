@@ -2,15 +2,14 @@ package org.tuwaiq.recipes.view.home.recipes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import org.tuwaiq.recipes.model.Ingredient
 import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.repository.RecipesRepository
 
 class RecipesViewModel: ViewModel() {
     var recipesRepository = RecipesRepository()
 
-    fun getVege(): LiveData<List<Recipe>> {
-        return recipesRepository.getVegeRecipes()
+    fun getDrinks(): LiveData<List<Recipe>> {
+        return recipesRepository.getDrinks()
     }
 
     fun getMain(): LiveData<List<Recipe>> {
