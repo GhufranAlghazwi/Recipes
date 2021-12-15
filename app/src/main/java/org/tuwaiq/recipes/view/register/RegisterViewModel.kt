@@ -4,19 +4,30 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.tuwaiq.recipes.repository.UserRepository
 
-class RegisterViewModel: ViewModel() {
+class RegisterViewModel : ViewModel() {
     var userRepository = UserRepository()
 
-    fun register(name: String, email: String, password: String): MutableLiveData<Boolean>{
+    fun register(name: String, email: String, password: String): MutableLiveData<Boolean> {
         var mLiveData = MutableLiveData<Boolean>()
 
-        userRepository.register(name,email,password).observeForever{
+        userRepository.register(name, email, password).observeForever {
             if (it)
                 mLiveData.postValue(true)
             else
                 mLiveData.postValue(false)
         }
 
+        return mLiveData
+    }
+
+    fun addUser(uid: String, fullname: String, id: String): MutableLiveData<Boolean> {
+        var mLiveData = MutableLiveData<Boolean>()
+        UserRepository().addUserToAPI(uid, fullname, id).observeForever {
+            if (it != null)
+                mLiveData.postValue(true)
+            else
+                mLiveData.postValue(false)
+        }
         return mLiveData
     }
 }

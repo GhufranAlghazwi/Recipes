@@ -3,10 +3,12 @@
     <item
         android:id="@+id/myRecipes"
         android:enabled="true"
-        android:title="My Recipes"/>
+        android:title="My Recipes"
+        android:icon="@drawable/soup"/>
     <item
         android:id="@+id/likes"
         android:enabled="true"
-        android:title="Likes" />
+        android:title="Likes"
+        android:icon="@drawable/heart"/>
 
 </menu>

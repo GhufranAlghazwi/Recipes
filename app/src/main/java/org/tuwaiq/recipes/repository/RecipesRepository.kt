@@ -2,9 +2,9 @@ package org.tuwaiq.recipes.repository
 
 import androidx.lifecycle.MutableLiveData
 import org.tuwaiq.recipes.model.Recipe
+import org.tuwaiq.recipes.model.User
 import org.tuwaiq.recipes.network.API
 import org.tuwaiq.recipes.network.RecipeService
-import org.tuwaiq.recipes.network.SpoonacularAPI
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,7 +12,6 @@ import retrofit2.Response
 
 class RecipesRepository {
     val recipeService= API.getInstance().create(RecipeService::class.java)
-    val ingrService = SpoonacularAPI.getInstance().create(RecipeService::class.java)
 
     fun getDrinks(): MutableLiveData<List<Recipe>>{
 
@@ -63,6 +62,22 @@ class RecipesRepository {
         return mutableLiveData
     }
 
+    fun getRecipeByUserID(uid: String):MutableLiveData<List<Recipe>>{
+        var mLiveData = MutableLiveData<List<Recipe>>()
+
+        recipeService.getUserRecipes(uid).enqueue(object : Callback<List<Recipe>> {
+            override fun onResponse(call: Call<List<Recipe>>, response: Response<List<Recipe>>) {
+                mLiveData.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<Recipe>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+
+        return mLiveData
+    }
+
     fun getAllRecipes(): MutableLiveData<List<Recipe>>{
         var mutableLiveData=MutableLiveData<List<Recipe>>()
 
@@ -91,5 +106,22 @@ class RecipesRepository {
             }
         })
         return mutableLiveData
+    }
+
+    fun addRecipe(title: String, image: String, time: String, instructions: String, category: String,
+                  ingr: String, uid: String): MutableLiveData<Recipe>{
+        var mLiveData = MutableLiveData<Recipe>()
+        recipeService.addRecipe(Recipe(title, image, time, instructions, category, ingr,uid, "1"))
+            .enqueue(object : Callback<Recipe> {
+                override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
+                    if(response.isSuccessful)
+                        mLiveData.postValue(response.body())
+                    else mLiveData.postValue(Recipe("","","","","","","",""))
+                }
+                override fun onFailure(call: Call<Recipe>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })
+        return mLiveData
     }
 }

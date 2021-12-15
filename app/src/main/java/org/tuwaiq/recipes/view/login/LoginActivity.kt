@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityLoginBinding
 import org.tuwaiq.recipes.view.home.HomeActivity
-import org.tuwaiq.recipes.view.home.ProfileFragment
 import org.tuwaiq.recipes.view.register.RegisterActivity
 import org.tuwaiq.recipes.view.resetpassword.ResetPasswordActivity
 

@@ -1,4 +1,4 @@
-package org.tuwaiq.recipes.view.home
+package org.tuwaiq.recipes.view.home.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,7 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
-import org.tuwaiq.recipes.view.home.recipes.RecipesFragment
+import org.tuwaiq.recipes.view.home.HomeViewModel
 
 class ProfileFragment : Fragment() {
     var currentUser = Firebase.auth.currentUser

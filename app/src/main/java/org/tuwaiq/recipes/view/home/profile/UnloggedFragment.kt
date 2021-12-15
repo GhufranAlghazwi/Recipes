@@ -1,4 +1,4 @@
-package org.tuwaiq.recipes.view.home
+package org.tuwaiq.recipes.view.home.profile
 
 import android.content.Intent
 import android.os.Bundle

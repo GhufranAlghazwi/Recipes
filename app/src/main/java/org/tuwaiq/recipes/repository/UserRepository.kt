@@ -6,10 +6,17 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.tuwaiq.recipes.model.User
+import org.tuwaiq.recipes.network.API
+import org.tuwaiq.recipes.network.UserService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class UserRepository {
     var auth = Firebase.auth
     val db = Firebase.firestore
+    val userService= API.getInstance().create(UserService::class.java)
 
     fun login(email: String, password: String): MutableLiveData<Boolean> {
         var mLiveData = MutableLiveData<Boolean>()
@@ -41,6 +48,23 @@ class UserRepository {
                 println(it.message)
                 mLiveData.postValue(false)
             }
+
+        return mLiveData
+    }
+
+    fun addUserToAPI(uid: String, fullname: String, id:String): MutableLiveData<User>{
+        var mLiveData = MutableLiveData<User>()
+        userService.addUser(User(uid, fullname, id)).enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if(response.isSuccessful)
+                    mLiveData.postValue(response.body())
+                else mLiveData.postValue(User("","",""))
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
 
         return mLiveData
     }

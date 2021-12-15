@@ -4,13 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.FragmentTransaction.TRANSIT_ENTER_MASK
-import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityHomeBinding
 import org.tuwaiq.recipes.view.home.addRecipe.AddRecipeActivity
+import org.tuwaiq.recipes.view.home.profile.ProfileFragment
+import org.tuwaiq.recipes.view.home.profile.UnloggedFragment
 import org.tuwaiq.recipes.view.home.recipes.RecipesFragment
 import org.tuwaiq.recipes.view.home.search.SearchFragment
 

@@ -22,8 +22,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
 
         Picasso.get().load(recipe.image).into(binding.imageViewDetails)
         binding.textViewDetailsName.text = recipe.title
-//        binding.textViewDetailsIngr.text = "Ingredients\n"+recipe.ingredients
-//        binding.textViewDetailsInstructions.text = "Instructions\n${recipe.instructions}"
+        binding.textViewPrepTime.text = recipe.readyInMinutes + " Min."
 
         binding.expandableIngrTV.text = recipe.ingredients
         cardViewIngr.setOnClickListener {
