@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.databinding.ActivityRegisterBinding
+import org.tuwaiq.recipes.model.User
 import org.tuwaiq.recipes.util.SharedPreferenceHelper
 import org.tuwaiq.recipes.view.home.HomeActivity
 import org.tuwaiq.recipes.view.login.LoginActivity
@@ -27,26 +28,23 @@ class RegisterActivity : AppCompatActivity() {
         var password = binding.registerPasswordEditText
 
         binding.RegisterButton.setOnClickListener {
-            if (name.text!!.isEmpty() || email.text!!.isEmpty() || password.text!!.isEmpty()){
+            if (name.text!!.isEmpty() || email.text!!.isEmpty() || password.text!!.isEmpty()) {
                 Toast.makeText(this, "Fill all fields to login", Toast.LENGTH_LONG).show()
-            }
-            else{
+            } else {
                 vm.register(name.text.toString(), email.text.toString(), password.text.toString())
                     .observe(this, {
-                        if (it){
-                            startActivity(Intent(this, LoginActivity::class.java))
-                            vm.addUser(auth.currentUser!!.uid, name.text.toString(), "1").observe(this, {
-                                if (it){
-                                    //SharedPreferenceHelper.saveUserID()
-                                    Toast.makeText(this, "Register success", Toast.LENGTH_LONG).show()
-                                }
-
-                            })
-                            print("Register success")
-                        }
-                        else{
+                        if (it) {
+                            var user = User(auth.currentUser!!.uid, name.text.toString(), "")
+                            vm.addUser(user)
+                                .observe(this, {
+                                    if (it) {
+                                        Toast.makeText(this, "Register success", Toast.LENGTH_LONG)
+                                            .show()
+                                    }
+                                    startActivity(Intent(this, LoginActivity::class.java))
+                                })
+                        } else {
                             Toast.makeText(this, "Failed to Register", Toast.LENGTH_LONG).show()
-                            print("Register failed")
                         }
                     })
             }

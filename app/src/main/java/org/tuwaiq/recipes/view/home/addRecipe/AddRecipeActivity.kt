@@ -1,23 +1,33 @@
 package org.tuwaiq.recipes.view.home.addRecipe
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.view.*
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.core.content.ContentProviderCompat.requireContext
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityAddRecipeBinding
+import org.tuwaiq.recipes.model.Recipe
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
 
 class AddRecipeActivity : AppCompatActivity() {
     lateinit var binding: ActivityAddRecipeBinding
     var auth = Firebase.auth
     val vm: AddRecipeViewModel by viewModels()
+    lateinit var imagePicker: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddRecipeBinding.inflate(layoutInflater)
@@ -25,6 +35,14 @@ class AddRecipeActivity : AppCompatActivity() {
         val categories = listOf("Main Dish", "Dessert", "Drink")
         val adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, categories)
         (binding.categoryMenu.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+
+        imagePicker= binding.addRecipeImage
+        imagePicker.setOnClickListener {
+            ImagePicker.with(this)
+                .crop()
+                .compress(50)
+                .start()
+        }
 
         binding.addButton.setOnClickListener {
             var title = binding.recipeNameInput.text.toString()
@@ -35,7 +53,8 @@ class AddRecipeActivity : AppCompatActivity() {
             var ingr = binding.ingrInput.text.toString()
             var uid = auth.currentUser?.uid
 
-            vm.addRecipe(title,image,time,instructions,category,ingr, uid!!).observe(this, {
+            var recipe = Recipe(title, image, time, instructions, category, ingr, uid!!,"")
+            vm.addRecipe(recipe).observe(this, {
                 if (it)
                     Toast.makeText(this, "Recipe", Toast.LENGTH_LONG).show()
             })
@@ -43,5 +62,30 @@ class AddRecipeActivity : AppCompatActivity() {
 
 
         setContentView(binding.root)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+
+            val uri: Uri = data?.data!!
+            imagePicker.setImageURI(uri)
+
+            //encode
+            val bm = BitmapFactory.decodeFile(uri.path)
+            val baos = ByteArrayOutputStream()
+            bm.compress(Bitmap.CompressFormat.JPEG, 100, baos) // bm is the bitmap object
+            val b = baos.toByteArray()
+            val encodedImage = Base64.encodeToString(b, Base64.DEFAULT)
+
+            //decode
+            var bytes = Base64.decode(encodedImage, Base64.DEFAULT)
+            var decodedImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+        }
     }
 }

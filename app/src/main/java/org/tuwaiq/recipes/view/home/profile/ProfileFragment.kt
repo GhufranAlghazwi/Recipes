@@ -1,5 +1,6 @@
 package org.tuwaiq.recipes.view.home.profile
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
+import org.tuwaiq.recipes.view.home.HomeActivity
 import org.tuwaiq.recipes.view.home.HomeViewModel
 
 class ProfileFragment : Fragment() {
@@ -34,26 +36,18 @@ class ProfileFragment : Fragment() {
             username = result?.getString("fullname")!!
             name.text = username
             val listName = username.split(" ")
-            shortCut.text = listName[0].first() +"" +listName[1].first()
+            shortCut.text = listName[0].first() +""
+            //+listName[1].first()
         }
 
         var logout = v.findViewById<ImageView>(R.id.logoutIcon)
         logout.setOnClickListener {
             Firebase.auth.signOut()
             Toast.makeText(context, "Logout successfully", Toast.LENGTH_SHORT).show()
-            updateUI(currentUser)
+            //updateUI(currentUser)
+            context?.startActivity(Intent(context, HomeActivity::class.java))
         }
         return v
     }
-
-    fun updateUI(user: FirebaseUser?){
-        HomeViewModel().checkLogin(user).observe(viewLifecycleOwner, {
-            if (!it)
-                supportFragmentManager
-                    ?.replace(R.id.mFrameLayout, UnloggedFragment())
-                    ?.commit()
-        })
-    }
-
 
 }

@@ -108,10 +108,9 @@ class RecipesRepository {
         return mutableLiveData
     }
 
-    fun addRecipe(title: String, image: String, time: String, instructions: String, category: String,
-                  ingr: String, uid: String): MutableLiveData<Recipe>{
+    fun addRecipe(recipe: Recipe): MutableLiveData<Recipe>{
         var mLiveData = MutableLiveData<Recipe>()
-        recipeService.addRecipe(Recipe(title, image, time, instructions, category, ingr,uid, "1"))
+        recipeService.addRecipe(recipe)
             .enqueue(object : Callback<Recipe> {
                 override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
                     if(response.isSuccessful)

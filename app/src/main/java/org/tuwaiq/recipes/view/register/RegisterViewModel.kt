@@ -2,6 +2,7 @@ package org.tuwaiq.recipes.view.register
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import org.tuwaiq.recipes.model.User
 import org.tuwaiq.recipes.repository.UserRepository
 
 class RegisterViewModel : ViewModel() {
@@ -20,14 +21,18 @@ class RegisterViewModel : ViewModel() {
         return mLiveData
     }
 
-    fun addUser(uid: String, fullname: String, id: String): MutableLiveData<Boolean> {
+    fun addUser(user: User): MutableLiveData<Boolean> {
         var mLiveData = MutableLiveData<Boolean>()
-        UserRepository().addUserToAPI(uid, fullname, id).observeForever {
+        UserRepository().addUserToAPI(user).observeForever {
             if (it != null)
                 mLiveData.postValue(true)
             else
                 mLiveData.postValue(false)
         }
         return mLiveData
+    }
+
+    fun getUserByFBID(FB_ID: String): MutableLiveData<List<User>>{
+        return userRepository.getUserByFbID(FB_ID)
     }
 }

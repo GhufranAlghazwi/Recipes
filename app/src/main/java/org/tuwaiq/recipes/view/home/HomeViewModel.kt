@@ -15,10 +15,8 @@ class HomeViewModel : ViewModel() {
         userRepository.checkLogin(user).observeForever {
             if (it) {
                 mLiveData.postValue(true)
-                println("There is logged in user HVM")
             } else {
                 mLiveData.postValue(false)
-                println("No user logged in HVM")
             }
         }
 

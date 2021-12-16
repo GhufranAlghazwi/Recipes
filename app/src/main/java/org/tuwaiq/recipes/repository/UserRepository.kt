@@ -52,9 +52,9 @@ class UserRepository {
         return mLiveData
     }
 
-    fun addUserToAPI(uid: String, fullname: String, id:String): MutableLiveData<User>{
+    fun addUserToAPI(user: User): MutableLiveData<User>{
         var mLiveData = MutableLiveData<User>()
-        userService.addUser(User(uid, fullname, id)).enqueue(object : Callback<User> {
+        userService.addUser(user).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if(response.isSuccessful)
                     mLiveData.postValue(response.body())
@@ -92,12 +92,26 @@ class UserRepository {
 //        var user = auth.currentUser
         if (user == null){
             mLiveData.postValue(false)
-            println("No user logged in repo")
         }
         else{
             mLiveData.postValue(true)
-            println(" logged in repo")
         }
+        return mLiveData
+    }
+
+    fun getUserByFbID(fbID: String): MutableLiveData<List<User>>{
+        var mLiveData = MutableLiveData<List<User>>()
+
+        userService.getUserByFBID(fbID).enqueue(object : Callback<List<User>> {
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                mLiveData.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+
         return mLiveData
     }
 
