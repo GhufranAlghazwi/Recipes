@@ -76,6 +76,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
+                android:background="@drawable/image_picker_shape"
                 android:id="@+id/addRecipeImage"
                 android:layout_width="0dp"
                 android:layout_height="370dp"
@@ -85,7 +86,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+
+                />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/outlinedTextField4"

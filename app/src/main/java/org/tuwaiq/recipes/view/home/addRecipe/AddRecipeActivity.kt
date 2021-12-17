@@ -18,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityAddRecipeBinding
 import org.tuwaiq.recipes.model.Recipe
+import org.tuwaiq.recipes.util.Base64Helper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,6 +29,7 @@ class AddRecipeActivity : AppCompatActivity() {
     var auth = Firebase.auth
     val vm: AddRecipeViewModel by viewModels()
     lateinit var imagePicker: ImageView
+    lateinit var encodedImage: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddRecipeBinding.inflate(layoutInflater)
@@ -39,24 +41,24 @@ class AddRecipeActivity : AppCompatActivity() {
         imagePicker= binding.addRecipeImage
         imagePicker.setOnClickListener {
             ImagePicker.with(this)
-                .crop()
+                .crop(1f,1f)
                 .compress(50)
                 .start()
         }
 
         binding.addButton.setOnClickListener {
             var title = binding.recipeNameInput.text.toString()
-            var image = ""
+//            var image =
             var time = binding.prepTimeInput.text.toString()
             var instructions = binding.recipeInstructionInput.text.toString()
             var category = binding.editText.text.toString()
             var ingr = binding.ingrInput.text.toString()
             var uid = auth.currentUser?.uid
 
-            var recipe = Recipe(title, image, time, instructions, category, ingr, uid!!,"")
+            var recipe = Recipe(title, encodedImage, time, instructions, category, ingr, uid!!,"")
             vm.addRecipe(recipe).observe(this, {
                 if (it)
-                    Toast.makeText(this, "Recipe", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Recipe added", Toast.LENGTH_LONG).show()
             })
         }
 
@@ -72,11 +74,7 @@ class AddRecipeActivity : AppCompatActivity() {
             imagePicker.setImageURI(uri)
 
             //encode
-            val bm = BitmapFactory.decodeFile(uri.path)
-            val baos = ByteArrayOutputStream()
-            bm.compress(Bitmap.CompressFormat.JPEG, 100, baos) // bm is the bitmap object
-            val b = baos.toByteArray()
-            val encodedImage = Base64.encodeToString(b, Base64.DEFAULT)
+            encodedImage = Base64Helper.encodeImage(uri)
 
             //decode
             var bytes = Base64.decode(encodedImage, Base64.DEFAULT)

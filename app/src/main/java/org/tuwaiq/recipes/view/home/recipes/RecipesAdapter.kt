@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.model.Recipe
+import org.tuwaiq.recipes.util.Base64Helper
 import org.tuwaiq.recipes.view.recipeDetails.RecipeDetailsActivity
+import java.util.*
+import java.util.regex.Pattern
 
 class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapterHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesAdapterHolder {
@@ -22,7 +25,13 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
     override fun onBindViewHolder(holder: RecipesAdapterHolder, position: Int) {
         holder.recipeName.text = data[position].title
         holder.time.text = data[position].readyInMinutes + " Min."
-        Picasso.get().load(data[position].image).into(holder.recipeImg)
+        if (Base64Helper.isBase64(data[position].image)) {
+            var image = Base64Helper.decodeImage(holder.recipeImg.context, data[position].image)
+            Picasso.get().load(image).into(holder.recipeImg)
+        }
+        else {
+            Picasso.get().load(data[position].image).into(holder.recipeImg)
+        }
 
         holder.cardItem.setOnClickListener {
             var i = Intent(holder.cardItem.context, RecipeDetailsActivity::class.java)
