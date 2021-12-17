@@ -32,7 +32,4 @@ class RegisterViewModel : ViewModel() {
         return mLiveData
     }
 
-    fun getUserByFBID(FB_ID: String): MutableLiveData<List<User>>{
-        return userRepository.getUserByFbID(FB_ID)
-    }
 }

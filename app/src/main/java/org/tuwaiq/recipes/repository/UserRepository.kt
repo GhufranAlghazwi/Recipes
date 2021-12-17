@@ -18,14 +18,16 @@ class UserRepository {
     val db = Firebase.firestore
     val userService= API.getInstance().create(UserService::class.java)
 
-    fun login(email: String, password: String): MutableLiveData<Boolean> {
-        var mLiveData = MutableLiveData<Boolean>()
+    fun login(email: String, password: String): MutableLiveData<String> {
+        var mLiveData = MutableLiveData<String>()
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    mLiveData.postValue(true)
-                } else
-                    mLiveData.postValue(false)
+                    mLiveData.postValue(auth.currentUser?.uid)
+                }
+                else{
+                    mLiveData.postValue("")
+                }
             }
 
         return mLiveData

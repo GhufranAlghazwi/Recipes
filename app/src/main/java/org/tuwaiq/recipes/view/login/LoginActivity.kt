@@ -14,7 +14,6 @@ import org.tuwaiq.recipes.view.resetpassword.ResetPasswordActivity
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
-    val vm2: RegisterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,18 +30,20 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 vm.login(email.text.toString(), password.text.toString())
                     .observe(this, {
-                        if (it) {
-//                            var id: String = ""
-//                            vm2.getUserByFBID(auth.currentUser!!.uid).observe(this, {
-//                                id = it[0].id
-//                                SharedPreferenceHelper.saveUserID(this, id)
-//                            })
-                            startActivity(Intent(this, HomeActivity::class.java))
-//                            var id = SharedPreferenceHelper.getUserID(this)
-                            Toast.makeText(this, "Login success", Toast.LENGTH_LONG).show()
-                        } else {
-                            Toast.makeText(this, "Failed to login", Toast.LENGTH_LONG).show()
+                        if(it.isNotEmpty()){
+                            vm.getUserByFBID(it).observe(this, {
+                                var id = it[0].id
+                                SharedPreferenceHelper.saveUserID(this, id)
+                                startActivity(Intent(this, HomeActivity::class.java))
+                                var idFromSP = SharedPreferenceHelper.getUserID(this)
+                                Toast.makeText(this, "Login success", Toast.LENGTH_LONG).show()
+
+                            })
                         }
+                        else{
+                            Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+                        }
+
                     })
             }
         }
