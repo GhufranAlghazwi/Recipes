@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import com.squareup.picasso.Picasso
 import org.tuwaiq.recipes.databinding.ActivityRecipeDetailsBinding
 import org.tuwaiq.recipes.model.Recipe
+import org.tuwaiq.recipes.util.Base64Helper
 
 class RecipeDetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivityRecipeDetailsBinding
@@ -21,6 +22,13 @@ class RecipeDetailsActivity : AppCompatActivity() {
         var recipe = intent.getSerializableExtra("recipe") as Recipe
 
         Picasso.get().load(recipe.image).into(binding.imageViewDetails)
+        if (Base64Helper.isBase64(recipe.image)) {
+            var image = Base64Helper.decodeImage(this, recipe.image)
+            Picasso.get().load(image).into(binding.imageViewDetails)
+        }
+        else {
+            Picasso.get().load(recipe.image).into(binding.imageViewDetails)
+        }
         binding.textViewDetailsName.text = recipe.title
         binding.textViewPrepTime.text = recipe.readyInMinutes + " Min."
 

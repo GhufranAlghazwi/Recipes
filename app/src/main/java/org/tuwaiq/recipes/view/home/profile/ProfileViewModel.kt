@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.repository.RecipesRepository
 
-class profileViewModel: ViewModel() {
+class ProfileViewModel: ViewModel() {
 
     fun getUserRecipes(uid: String): MutableLiveData<List<Recipe>>{
         return RecipesRepository().getRecipeByUserID(uid)

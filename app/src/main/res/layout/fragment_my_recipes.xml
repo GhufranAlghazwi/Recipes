@@ -5,13 +5,13 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.home.FridgeFragment" >
+    tools:context=".view.home.profile.MyRecipesFragment" >
 
-    <SearchView
-        android:id="@+id/ingrSearchView"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:inputType="textAutoComplete"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myRecipesRV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

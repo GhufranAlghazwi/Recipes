@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.model.Recipe
+import org.tuwaiq.recipes.util.Base64Helper
 import org.tuwaiq.recipes.view.recipeDetails.RecipeDetailsActivity
 
 class SearchAdapter(var data: List<Recipe>) : RecyclerView.Adapter<SearchAdapterHolder>(){
@@ -24,7 +25,14 @@ class SearchAdapter(var data: List<Recipe>) : RecyclerView.Adapter<SearchAdapter
 
     override fun onBindViewHolder(holder: SearchAdapterHolder, position: Int) {
         holder.name.text = data[position].title
-        Picasso.get().load(data[position].image).into(holder.image)
+
+        if (Base64Helper.isBase64(data[position].image)) {
+            var image = Base64Helper.decodeImage(holder.image.context, data[position].image)
+            Picasso.get().load(image).into(holder.image)
+        }
+        else {
+            Picasso.get().load(data[position].image).into(holder.image)
+        }
 
         holder.card.setOnClickListener {
             var i = Intent(holder.card.context, RecipeDetailsActivity::class.java)
