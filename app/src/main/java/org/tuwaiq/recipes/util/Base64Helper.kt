@@ -1,5 +1,6 @@
 package org.tuwaiq.recipes.util
 
+import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
 import android.content.res.Resources
@@ -29,7 +30,7 @@ class Base64Helper {
             return encodedImage
         }
 
-        fun decodeImage(context: Context, encodedImage: String): Uri {
+        fun decodeImage(context: Context, encodedImage: String): Bitmap {
             //decode
             var bytes = Base64.decode(encodedImage, Base64.DEFAULT)
             var decodedImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
@@ -42,7 +43,8 @@ class Base64Helper {
                 "Title",
                 null
             )
-            return return Uri.parse(path)
+//            return Uri.parse(path)
+            return decodedImage
 
 
         }

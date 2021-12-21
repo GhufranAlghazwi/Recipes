@@ -7,11 +7,12 @@
     tools:context=".view.recipeDetails.RecipeDetailsActivity">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewDetails"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/deleteButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -48,11 +49,11 @@
                 android:id="@+id/imageViewTimeIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_access_time_24"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewDetailsName"
-                android:layout_marginVertical="8dp"
-                android:layout_marginStart="16dp"/>
+                app:srcCompat="@drawable/ic_baseline_access_time_24" />
 
             <TextView
                 android:id="@+id/textViewPrepTime"
@@ -63,8 +64,7 @@
                 android:textAlignment="center"
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@id/imageViewTimeIcon"
-                app:layout_constraintTop_toTopOf="@id/imageViewTimeIcon"
-                 />
+                app:layout_constraintTop_toTopOf="@id/imageViewTimeIcon" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardViewIngr"
@@ -222,9 +222,36 @@
             </com.google.android.material.card.MaterialCardView>
 
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="Edit"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/deleteButton"
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewDetails" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="Delete"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewDetails" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

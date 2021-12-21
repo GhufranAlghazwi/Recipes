@@ -27,7 +27,8 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
         holder.time.text = data[position].readyInMinutes + " Min."
         if (Base64Helper.isBase64(data[position].image)) {
             var image = Base64Helper.decodeImage(holder.recipeImg.context, data[position].image)
-            Picasso.get().load(image).into(holder.recipeImg)
+            holder.recipeImg.setImageBitmap(image)
+            //Picasso.get().load(image).into(holder.recipeImg)
         }
         else {
             Picasso.get().load(data[position].image).into(holder.recipeImg)

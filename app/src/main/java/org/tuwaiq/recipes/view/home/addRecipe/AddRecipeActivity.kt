@@ -19,6 +19,7 @@ import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityAddRecipeBinding
 import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.util.Base64Helper
+import org.tuwaiq.recipes.view.recipeDetails.RecipeDetailsActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -57,8 +58,13 @@ class AddRecipeActivity : AppCompatActivity() {
 
             var recipe = Recipe(title, encodedImage, time, instructions, category, ingr, uid!!,"")
             vm.addRecipe(recipe).observe(this, {
-                if (it)
+                if (it!=null){
                     Toast.makeText(this, "Recipe added", Toast.LENGTH_LONG).show()
+                    var i = Intent(this, RecipeDetailsActivity::class.java)
+                    i.putExtra("recipe", recipe)
+                    startActivity(i)
+                }
+
             })
         }
 

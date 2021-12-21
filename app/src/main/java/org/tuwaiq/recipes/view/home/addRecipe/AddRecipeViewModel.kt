@@ -7,15 +7,15 @@ import org.tuwaiq.recipes.repository.RecipesRepository
 
 class AddRecipeViewModel: ViewModel() {
 
-    fun addRecipe(recipe: Recipe): MutableLiveData<Boolean>{
-        var mLiveData = MutableLiveData<Boolean>()
+    fun addRecipe(recipe: Recipe): MutableLiveData<Recipe>{
+        var mLiveData = MutableLiveData<Recipe>()
 
         RecipesRepository().addRecipe(recipe)
             .observeForever{
                 if (it != null)
-                    mLiveData.postValue(true)
+                    mLiveData.postValue(it)
                 else
-                    mLiveData.postValue(false)
+                    mLiveData.postValue(Recipe("","","","","","","",""))
             }
 
         return mLiveData

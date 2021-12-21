@@ -28,7 +28,8 @@ class SearchAdapter(var data: List<Recipe>) : RecyclerView.Adapter<SearchAdapter
 
         if (Base64Helper.isBase64(data[position].image)) {
             var image = Base64Helper.decodeImage(holder.image.context, data[position].image)
-            Picasso.get().load(image).into(holder.image)
+            holder.image.setImageBitmap(image)
+            //Picasso.get().load(image).into(holder.image)
         }
         else {
             Picasso.get().load(data[position].image).into(holder.image)

@@ -115,7 +115,8 @@ class RecipesRepository {
                 override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
                     if(response.isSuccessful)
                         mLiveData.postValue(response.body())
-                    else mLiveData.postValue(Recipe("","","","","","","",""))
+                    else
+                        mLiveData.postValue(Recipe("","","","","","","",""))
                 }
                 override fun onFailure(call: Call<Recipe>, t: Throwable) {
                     TODO("Not yet implemented")
