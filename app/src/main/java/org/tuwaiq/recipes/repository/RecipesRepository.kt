@@ -124,4 +124,23 @@ class RecipesRepository {
             })
         return mLiveData
     }
+
+    fun deleteRecipe(id: String): MutableLiveData<Boolean>{
+        var mLiveData = MutableLiveData<Boolean>()
+
+        recipeService.deleteRecipe(id).enqueue(object : Callback<Recipe> {
+            override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
+                if (response.isSuccessful)
+                    mLiveData.postValue(true)
+                else
+                    mLiveData.postValue(false)
+            }
+
+            override fun onFailure(call: Call<Recipe>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+
+        return mLiveData
+    }
 }

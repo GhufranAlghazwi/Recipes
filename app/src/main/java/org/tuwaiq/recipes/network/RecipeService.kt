@@ -2,10 +2,7 @@ package org.tuwaiq.recipes.network
 
 import org.tuwaiq.recipes.model.Recipe
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface RecipeService {
 
@@ -29,4 +26,7 @@ interface RecipeService {
 
     @POST("recipes")
     fun addRecipe(@Body recipe: Recipe): Call<Recipe>
+
+    @DELETE("recipes/{id}")
+    fun deleteRecipe(@Path("id")id: String):Call<Recipe>
 }

@@ -2,12 +2,15 @@ package org.tuwaiq.recipes.view.recipeDetails
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
+import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityRecipeDetailsBinding
 import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.util.Base64Helper
@@ -15,6 +18,7 @@ import org.tuwaiq.recipes.util.Base64Helper
 class RecipeDetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivityRecipeDetailsBinding
     var currentUser = Firebase.auth.currentUser
+    val vm: DetailsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +31,21 @@ class RecipeDetailsActivity : AppCompatActivity() {
         if (currentUser?.uid == recipe.uid){
             binding.editButton.isVisible = true
             binding.deleteButton.isVisible = true
+            binding.deleteButton.setOnClickListener {
+                vm.deleteRecipe(recipe.id).observe(this,{
+                    if (it){
+                        Toast.makeText(this, "Your recipe deleted successfully", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                    else{
+                        Toast.makeText(this, "Failed to delete", Toast.LENGTH_SHORT).show()
+                    }
+
+                })
+            }
         }
 
-        Picasso.get().load(recipe.image).into(binding.imageViewDetails)
+        //Picasso.get().load(recipe.image).into(binding.imageViewDetails)
         if (Base64Helper.isBase64(recipe.image)) {
             var image = Base64Helper.decodeImage(this, recipe.image)
             binding.imageViewDetails.setImageBitmap(image)
@@ -44,12 +60,22 @@ class RecipeDetailsActivity : AppCompatActivity() {
         binding.expandableIngrTV.text = recipe.ingredients
         cardViewIngr.setOnClickListener {
             expandableIngr.isVisible = !expandableIngr.isVisible
+            if (!expandableIngr.isVisible){
+                binding.imageView6.setImageResource(R.drawable.arrow_right)
+            }
+            else
+                binding.imageView6.setImageResource(R.drawable.down_arrow)
         }
+
 
         binding.expandableInstructionsTV.text = recipe.instructions
         binding.cardViewInstruction.setOnClickListener {
             binding.expandablInstruction.isVisible = !binding.expandablInstruction.isVisible
-        }
+            if (!binding.expandablInstruction.isVisible){
+                binding.imageView7.setImageResource(R.drawable.arrow_right)
+            }
+            else
+                binding.imageView7.setImageResource(R.drawable.down_arrow)        }
         setContentView(binding.root)
     }
 }

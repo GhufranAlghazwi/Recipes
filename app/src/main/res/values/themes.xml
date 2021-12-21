@@ -2,8 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.Recipes" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#93B5C6</item>
-        <item name="colorPrimaryVariant">#C9CCD5</item>
+<!--        <item name="colorPrimary">#93B5C6</item>-->
+        <item name="colorPrimary">#FF8E00</item>
+        <item name="colorPrimaryVariant">#FAEDC6</item>
+        <!--        <item name="colorPrimaryVariant">#C9CCD5</item>-->
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -11,6 +13,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="fontFamily">@font/nunito</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
