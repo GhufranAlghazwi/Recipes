@@ -43,7 +43,8 @@ class AddRecipeActivity : AppCompatActivity() {
         imagePicker.setOnClickListener {
             ImagePicker.with(this)
                 .crop(1f,1f)
-                .compress(50)
+                .compress(32)
+                .maxResultSize(1080,1080)
                 .start()
         }
 

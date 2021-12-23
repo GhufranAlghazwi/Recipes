@@ -40,8 +40,11 @@ class ProfileFragment : Fragment() {
             username = result?.getString("fullname")!!
             name.text = username
             val listName = username.split(" ")
-            shortCut.text = listName[0].first() +""
-            //+listName[1].first()
+            if (listName.size >= 2)
+                shortCut.text = listName[0].first() +""+ listName[1].first()
+            else if (listName.size == 1)
+                shortCut.text = listName[0].first() +""
+
         }
 
         var logout = v.findViewById<ImageView>(R.id.logoutIcon)
