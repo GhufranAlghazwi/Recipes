@@ -15,8 +15,13 @@ import org.tuwaiq.recipes.util.Base64Helper
 import org.tuwaiq.recipes.view.recipeDetails.RecipeDetailsActivity
 import java.util.*
 import java.util.regex.Pattern
+import android.widget.AdapterView.OnItemClickListener
+import xyz.hanks.library.bang.SmallBangView
+import kotlin.collections.ArrayList
+
 
 class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapterHolder>() {
+    private var dataList: MutableList<Recipe> = data as MutableList<Recipe>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesAdapterHolder {
         var v = LayoutInflater.from(parent.context).inflate(R.layout.list_item_recipe, null)
         return RecipesAdapterHolder(v)
@@ -29,20 +34,33 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
             var image = Base64Helper.decodeImage(holder.recipeImg.context, data[position].image)
             holder.recipeImg.setImageBitmap(image)
             //Picasso.get().load(image).into(holder.recipeImg)
-        }
-        else {
+        } else {
             Picasso.get().load(data[position].image).into(holder.recipeImg)
         }
 
         holder.cardItem.setOnClickListener {
             var i = Intent(holder.cardItem.context, RecipeDetailsActivity::class.java)
             i.putExtra("recipe", data[position])
+            i.putExtra("position", position)
             holder.cardItem.context.startActivity(i)
+        }
+
+        holder.btnLike.setOnClickListener {
+            if (holder.btnLike.isSelected()) {
+                holder.btnLike.setSelected(false)
+            } else {
+                holder.btnLike.setSelected(true)
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return data.size
+    }
+
+    fun removeAt(position: Int) {
+        dataList.removeAt(position)
+        notifyDataSetChanged()
     }
 }
 
@@ -51,5 +69,6 @@ class RecipesAdapterHolder(v: View) : RecyclerView.ViewHolder(v) {
     var recipeName = v.findViewById<TextView>(R.id.recipeNameTV)
     var time = v.findViewById<TextView>(R.id.preparationTimeTV)
     var cardItem = v.findViewById<CardView>(R.id.itemCard)
+    var btnLike = v.findViewById<SmallBangView>(R.id.like_heart)
 }
 

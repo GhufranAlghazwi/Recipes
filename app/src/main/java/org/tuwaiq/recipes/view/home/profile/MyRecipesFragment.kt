@@ -12,11 +12,15 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.FragmentMyRecipesBinding
+import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
 
 class MyRecipesFragment : Fragment() {
     val vm: ProfileViewModel by viewModels()
     var currentUser = Firebase.auth.uid
+    var list = mutableListOf<Recipe>() as List<Recipe>
+    var myAdapter = RecipesAdapter(list)
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_my_recipes, container, false)

@@ -37,12 +37,12 @@ class Base64Helper {
 
             val baos = ByteArrayOutputStream()
             decodedImage.compress(Bitmap.CompressFormat.JPEG, 100, baos) // bm is the bitmap object
-            val path = MediaStore.Images.Media.insertImage(
-                context.contentResolver,
-                decodedImage,
-                "Title",
-                null
-            )
+//            val path = MediaStore.Images.Media.insertImage(
+//                context.contentResolver,
+//                decodedImage,
+//                "Title",
+//                null
+//            )
 //            return Uri.parse(path)
             return decodedImage
 

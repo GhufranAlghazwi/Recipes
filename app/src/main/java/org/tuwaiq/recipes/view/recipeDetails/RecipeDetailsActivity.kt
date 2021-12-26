@@ -19,6 +19,7 @@ import org.tuwaiq.recipes.util.Base64Helper
 import cn.pedant.SweetAlert.SweetAlertDialog
 import cn.pedant.SweetAlert.SweetAlertDialog.OnSweetClickListener
 import org.tuwaiq.recipes.view.home.HomeActivity
+import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
 
 
 class RecipeDetailsActivity : AppCompatActivity() {
@@ -31,8 +32,11 @@ class RecipeDetailsActivity : AppCompatActivity() {
         binding = ActivityRecipeDetailsBinding.inflate(layoutInflater)
         var expandableIngr = binding.expandablengr
         var cardViewIngr = binding.cardViewIngr
+        var list = mutableListOf<Recipe>() as List<Recipe>
+        var myAdapter = RecipesAdapter(list)
 
         var recipe = intent.getSerializableExtra("recipe") as Recipe
+        var position = intent.getIntExtra("position", 0)
 
         if (currentUser?.uid == recipe.uid) {
             binding.editButton.isVisible = true
@@ -45,14 +49,13 @@ class RecipeDetailsActivity : AppCompatActivity() {
                     .setConfirmClickListener { sDialog ->
                         vm.deleteRecipe(recipe.id).observe(this, {
                             if (it) {
-                                //Toast.makeText(this, "Your recipe deleted successfully", Toast.LENGTH_SHORT).show()
-
                                 sDialog
                                     .setTitleText("Deleted!")
                                     .setContentText("Your recipe has been deleted!")
                                     .setConfirmText("OK")
                                     .setConfirmClickListener{
                                         finish()
+                                        myAdapter.removeAt(position)
                                     }
                                     .changeAlertType(SweetAlertDialog.SUCCESS_TYPE)
                             } else {
