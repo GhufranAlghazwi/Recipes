@@ -33,6 +33,8 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
 
     override fun onBindViewHolder(holder: RecipesAdapterHolder, position: Int) {
         var uid = SharedPreferenceHelper.getUserID(holder.cardItem.context)
+        var lid = SharedPreferenceHelper.getLikesID(holder.btnLike.context)
+
         holder.recipeName.text = data[position].title
         holder.time.text = data[position].readyInMinutes + " Min."
         if (Base64Helper.isBase64(data[position].image)) {
@@ -50,7 +52,23 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
             holder.cardItem.context.startActivity(i)
         }
 
+        LikesViewModel().getUserLikes(uid, SharedPreferenceHelper.getLikesID(holder.cardItem.context))
+            .observeForever {
+                for (r in it){
+                    if (r.title == data[position].title){
+                        holder.btnLike.isSelected = true
+                    }
+                }
+            }
+
         holder.btnLike.setOnClickListener {
+            if (holder.btnLike.isSelected()) {
+                //holder.btnLike.setSelected(false)
+                LikesViewModel().removeFromLikes(uid,lid, data[position].title).observeForever {
+                    holder.btnLike.isSelected = !it
+                }
+            } else {
+                //holder.btnLike.setSelected(true)
                 if(SharedPreferenceHelper.getLikesID(holder.btnLike.context) == "null"){
                     LikesViewModel().createLikesList(uid, Likes("", uid)).observeForever {
                         if (it != null){
@@ -63,17 +81,13 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
                         }
                     }
                 } else{
-                    var lid = SharedPreferenceHelper.getLikesID(holder.btnLike.context)
+                    //var lid = SharedPreferenceHelper.getLikesID(holder.btnLike.context)
                     var data= data[position]
                     var likedRecipe = LikedRecipe(data.category, "", data.image, data.ingredients, data.instructions, lid, data.readyInMinutes, data.title, uid)
                     LikesViewModel().addToLikes(uid, lid, likedRecipe).observeForever {
                         holder.btnLike.isSelected = it
                     }
                 }
-            if (holder.btnLike.isSelected()) {
-                holder.btnLike.setSelected(false)
-            } else {
-                holder.btnLike.setSelected(true)
             }
             }
         }

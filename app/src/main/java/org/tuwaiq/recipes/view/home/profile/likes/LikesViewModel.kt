@@ -37,4 +37,12 @@ class LikesViewModel: ViewModel() {
 
         return mLiveData
     }
+
+    fun getUserLikes(uid: String, lid: String): MutableLiveData<List<LikedRecipe>>{
+        return LikesRepository().getUserLikes(uid, lid)
+    }
+
+    fun removeFromLikes(uid: String, lid: String, rid: String): MutableLiveData<Boolean>{
+        return LikesRepository().removeFromLikes(uid, lid, rid)
+    }
 }

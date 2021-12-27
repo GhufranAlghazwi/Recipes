@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import org.tuwaiq.recipes.model.LikedRecipe
 import org.tuwaiq.recipes.model.Likes
+import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.network.API
 import org.tuwaiq.recipes.network.LikesService
 import org.tuwaiq.recipes.network.RecipeService
@@ -56,6 +57,41 @@ class LikesRepository {
                 if (response.isSuccessful){
                     mLiveData.postValue(response.body())
                 }
+            }
+
+            override fun onFailure(call: Call<LikedRecipe>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+        return mLiveData
+    }
+
+    fun getUserLikes(uid: String, lid: String): MutableLiveData<List<LikedRecipe>>{
+        var mLiveData = MutableLiveData<List<LikedRecipe>>()
+
+        likesService.getUserLikes(uid, lid).enqueue(object : Callback<List<LikedRecipe>> {
+            override fun onResponse(
+                call: Call<List<LikedRecipe>>,
+                response: Response<List<LikedRecipe>>
+            ) {
+                mLiveData.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<LikedRecipe>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+        return mLiveData
+    }
+
+    fun removeFromLikes(uid: String, lid: String, rid: String): MutableLiveData<Boolean>{
+        var mLiveData = MutableLiveData<Boolean>()
+        likesService.removeFromLikes(uid, lid, rid).enqueue(object : Callback<LikedRecipe> {
+            override fun onResponse(call: Call<LikedRecipe>, response: Response<LikedRecipe>) {
+                if (response.isSuccessful)
+                    mLiveData.postValue(true)
+                else
+                    mLiveData.postValue(false)
             }
 
             override fun onFailure(call: Call<LikedRecipe>, t: Throwable) {

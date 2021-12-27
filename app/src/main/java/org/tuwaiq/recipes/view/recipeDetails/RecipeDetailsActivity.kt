@@ -18,6 +18,7 @@ import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.util.Base64Helper
 import cn.pedant.SweetAlert.SweetAlertDialog
 import cn.pedant.SweetAlert.SweetAlertDialog.OnSweetClickListener
+import org.tuwaiq.recipes.model.LikedRecipe
 import org.tuwaiq.recipes.view.home.HomeActivity
 import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
 
@@ -36,6 +37,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
         var myAdapter = RecipesAdapter(list)
 
         var recipe = intent.getSerializableExtra("recipe") as Recipe
+        //var recipe1 = intent.getSerializableExtra("recipe1") as LikedRecipe
         var position = intent.getIntExtra("position", 0)
 
         if (currentUser?.uid == recipe.uid) {
