@@ -1,14 +1,10 @@
 package org.tuwaiq.recipes.view.home.profile
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import org.tuwaiq.recipes.view.home.HomeActivity
 import androidx.fragment.app.FragmentPagerAdapter
-
-
+import org.tuwaiq.recipes.view.home.profile.likes.LikedRecipesFragment
 
 
 class ProfileVPAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {

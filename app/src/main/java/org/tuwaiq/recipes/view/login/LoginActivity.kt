@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import org.tuwaiq.recipes.databinding.ActivityLoginBinding
+import org.tuwaiq.recipes.model.Likes
 import org.tuwaiq.recipes.util.SharedPreferenceHelper
 import org.tuwaiq.recipes.view.home.HomeActivity
+import org.tuwaiq.recipes.view.home.profile.likes.LikesViewModel
 import org.tuwaiq.recipes.view.register.RegisterActivity
 import org.tuwaiq.recipes.view.register.RegisterViewModel
 import org.tuwaiq.recipes.view.resetpassword.ResetPasswordActivity
@@ -20,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
 
         val vm: LoginViewModel by viewModels()
+        val vm2: LikesViewModel by viewModels()
 
         var email = binding.loginEmailEditText
         var password = binding.loginPasswordEditText
@@ -35,10 +38,21 @@ class LoginActivity : AppCompatActivity() {
                                 var id = it[0].id
                                 SharedPreferenceHelper.saveUserID(this, id)
                                 startActivity(Intent(this, HomeActivity::class.java))
-                                var idFromSP = SharedPreferenceHelper.getUserID(this)
                                 Toast.makeText(this, "Login success", Toast.LENGTH_LONG).show()
-
+                                ////
+                                var uid = SharedPreferenceHelper.getUserID(this)
+                                vm2.getLidByUid(uid, uid).observe(this, {
+                                    if (it.size == 0){
+                                        SharedPreferenceHelper.saveLikesID(this, "null")
+                                    }
+                                    else{
+                                        var lid = it[0].id
+                                        SharedPreferenceHelper.saveLikesID(this ,lid)
+                                    }
+                                })
                             })
+
+
                         }
                         else{
                             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()

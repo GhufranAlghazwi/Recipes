@@ -21,7 +21,7 @@ class SharedPreferenceHelper {
         fun saveLikesID(context: Context, id: String){
             var pref = context.getSharedPreferences("likesPref", Context.MODE_PRIVATE)
             pref.edit()
-                .putString("lID", id)
+                .putString("lID", id).commit()
         }
 
         fun getLikesID(context: Context): String{

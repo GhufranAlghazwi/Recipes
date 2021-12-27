@@ -16,6 +16,10 @@ import org.tuwaiq.recipes.view.recipeDetails.RecipeDetailsActivity
 import java.util.*
 import java.util.regex.Pattern
 import android.widget.AdapterView.OnItemClickListener
+import org.tuwaiq.recipes.model.LikedRecipe
+import org.tuwaiq.recipes.model.Likes
+import org.tuwaiq.recipes.util.SharedPreferenceHelper
+import org.tuwaiq.recipes.view.home.profile.likes.LikesViewModel
 import xyz.hanks.library.bang.SmallBangView
 import kotlin.collections.ArrayList
 
@@ -28,6 +32,7 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
     }
 
     override fun onBindViewHolder(holder: RecipesAdapterHolder, position: Int) {
+        var uid = SharedPreferenceHelper.getUserID(holder.cardItem.context)
         holder.recipeName.text = data[position].title
         holder.time.text = data[position].readyInMinutes + " Min."
         if (Base64Helper.isBase64(data[position].image)) {
@@ -46,13 +51,33 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
         }
 
         holder.btnLike.setOnClickListener {
+                if(SharedPreferenceHelper.getLikesID(holder.btnLike.context) == "null"){
+                    LikesViewModel().createLikesList(uid, Likes("", uid)).observeForever {
+                        if (it != null){
+                            SharedPreferenceHelper.saveLikesID(holder.btnLike.context, it.id)
+                            var data= data[position]
+                            var likedRecipe = LikedRecipe(data.category, "", data.image, data.ingredients, data.instructions, it.id, data.readyInMinutes, data.title, uid)
+                            LikesViewModel().addToLikes(uid, it.id, likedRecipe).observeForever {
+                                holder.btnLike.isSelected = it
+                            }
+                        }
+                    }
+                } else{
+                    var lid = SharedPreferenceHelper.getLikesID(holder.btnLike.context)
+                    var data= data[position]
+                    var likedRecipe = LikedRecipe(data.category, "", data.image, data.ingredients, data.instructions, lid, data.readyInMinutes, data.title, uid)
+                    LikesViewModel().addToLikes(uid, lid, likedRecipe).observeForever {
+                        holder.btnLike.isSelected = it
+                    }
+                }
             if (holder.btnLike.isSelected()) {
                 holder.btnLike.setSelected(false)
             } else {
                 holder.btnLike.setSelected(true)
             }
+            }
         }
-    }
+
 
     override fun getItemCount(): Int {
         return data.size
@@ -60,6 +85,7 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
 
     fun removeAt(position: Int) {
         dataList.removeAt(position)
+        notifyItemRemoved(position)
         notifyDataSetChanged()
     }
 }
