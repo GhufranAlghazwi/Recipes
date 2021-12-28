@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import org.tuwaiq.recipes.databinding.ActivitySplashBinding
-import org.tuwaiq.recipes.view.MainActivity
-import org.tuwaiq.recipes.view.home.HomeActivity
-import org.tuwaiq.recipes.view.login.LoginActivity
+import org.tuwaiq.recipes.view.home.mainscreen.HomeActivity
 
 class SplashActivity : AppCompatActivity() {
     lateinit var binding: ActivitySplashBinding

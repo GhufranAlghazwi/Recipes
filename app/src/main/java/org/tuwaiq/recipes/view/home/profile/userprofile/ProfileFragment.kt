@@ -1,4 +1,4 @@
-package org.tuwaiq.recipes.view.home.profile
+package org.tuwaiq.recipes.view.home.profile.userprofile
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,17 +9,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
-import org.tuwaiq.recipes.view.home.HomeActivity
-import org.tuwaiq.recipes.view.home.HomeViewModel
-import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
+import org.tuwaiq.recipes.view.home.mainscreen.HomeActivity
+import org.tuwaiq.recipes.view.home.profile.ProfileVPAdapter
 
 class ProfileFragment : Fragment() {
     var currentUser = Firebase.auth.currentUser

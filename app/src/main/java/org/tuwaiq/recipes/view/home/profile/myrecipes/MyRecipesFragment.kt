@@ -12,7 +12,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.model.Recipe
-import org.tuwaiq.recipes.view.home.profile.ProfileViewModel
+import org.tuwaiq.recipes.view.home.profile.userprofile.ProfileViewModel
 import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
 
 class MyRecipesFragment : Fragment() {

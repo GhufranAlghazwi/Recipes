@@ -1,4 +1,4 @@
-package org.tuwaiq.recipes.view.home
+package org.tuwaiq.recipes.view.home.mainscreen
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

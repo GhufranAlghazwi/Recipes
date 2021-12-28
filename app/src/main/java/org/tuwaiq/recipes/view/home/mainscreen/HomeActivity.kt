@@ -1,4 +1,4 @@
-package org.tuwaiq.recipes.view.home
+package org.tuwaiq.recipes.view.home.mainscreen
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +9,8 @@ import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityHomeBinding
 import org.tuwaiq.recipes.view.home.addRecipe.AddRecipeActivity
-import org.tuwaiq.recipes.view.home.profile.ProfileFragment
-import org.tuwaiq.recipes.view.home.profile.UnloggedFragment
+import org.tuwaiq.recipes.view.home.profile.userprofile.ProfileFragment
+import org.tuwaiq.recipes.view.home.profile.userprofile.UnloggedFragment
 import org.tuwaiq.recipes.view.home.recipes.RecipesFragment
 import org.tuwaiq.recipes.view.home.search.SearchFragment
 

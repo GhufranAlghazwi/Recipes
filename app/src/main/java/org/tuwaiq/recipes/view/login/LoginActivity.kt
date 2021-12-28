@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import org.tuwaiq.recipes.databinding.ActivityLoginBinding
-import org.tuwaiq.recipes.model.Likes
 import org.tuwaiq.recipes.util.SharedPreferenceHelper
-import org.tuwaiq.recipes.view.home.HomeActivity
+import org.tuwaiq.recipes.view.home.mainscreen.HomeActivity
 import org.tuwaiq.recipes.view.home.profile.likes.LikesViewModel
 import org.tuwaiq.recipes.view.register.RegisterActivity
-import org.tuwaiq.recipes.view.register.RegisterViewModel
 import org.tuwaiq.recipes.view.resetpassword.ResetPasswordActivity
 
 class LoginActivity : AppCompatActivity() {

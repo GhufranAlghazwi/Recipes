@@ -1,7 +1,6 @@
 package org.tuwaiq.recipes.view.register
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,8 +9,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.databinding.ActivityRegisterBinding
 import org.tuwaiq.recipes.model.User
-import org.tuwaiq.recipes.util.SharedPreferenceHelper
-import org.tuwaiq.recipes.view.home.HomeActivity
 import org.tuwaiq.recipes.view.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {

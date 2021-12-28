@@ -1,13 +1,9 @@
 package org.tuwaiq.recipes.view.recipeDetails
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -17,9 +13,6 @@ import org.tuwaiq.recipes.databinding.ActivityRecipeDetailsBinding
 import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.util.Base64Helper
 import cn.pedant.SweetAlert.SweetAlertDialog
-import cn.pedant.SweetAlert.SweetAlertDialog.OnSweetClickListener
-import org.tuwaiq.recipes.model.LikedRecipe
-import org.tuwaiq.recipes.view.home.HomeActivity
 import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
 
 
