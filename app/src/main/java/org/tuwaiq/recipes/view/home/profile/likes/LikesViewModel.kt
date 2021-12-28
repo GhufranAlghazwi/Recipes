@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.tuwaiq.recipes.model.LikedRecipe
 import org.tuwaiq.recipes.model.Likes
+import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.repository.LikesRepository
 
 class LikesViewModel: ViewModel() {
@@ -38,8 +39,12 @@ class LikesViewModel: ViewModel() {
         return mLiveData
     }
 
-    fun getUserLikes(uid: String, lid: String): MutableLiveData<List<LikedRecipe>>{
+    fun getUserLikes(uid: String, lid: String): MutableLiveData<List<Recipe>>{
         return LikesRepository().getUserLikes(uid, lid)
+    }
+
+    fun getLikedName(uid: String, lid: String, rid: String): MutableLiveData<List<LikedRecipe>>{
+        return LikesRepository().getLikedRecipeByName(uid, lid, rid)
     }
 
     fun removeFromLikes(uid: String, lid: String, rid: String): MutableLiveData<Boolean>{

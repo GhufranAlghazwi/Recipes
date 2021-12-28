@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Recipes"
         tools:replace="android:icon">
         <activity
+            android:name=".view.home.recipes.AllRecipesActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.recipeDetails.RecipeDetailsActivity"
             android:exported="false" />
         <activity
@@ -40,7 +43,7 @@
         <activity
             android:name=".view.home.HomeActivity"
             android:exported="false"
-            android:theme="@style/Theme.SplashScreen"/>
+            android:theme="@style/Theme.SplashScreen" />
         <activity
             android:name=".view.splash.SplashActivity"
             android:exported="true"

@@ -13,15 +13,11 @@ import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.util.Base64Helper
 import org.tuwaiq.recipes.view.recipeDetails.RecipeDetailsActivity
-import java.util.*
-import java.util.regex.Pattern
-import android.widget.AdapterView.OnItemClickListener
 import org.tuwaiq.recipes.model.LikedRecipe
 import org.tuwaiq.recipes.model.Likes
 import org.tuwaiq.recipes.util.SharedPreferenceHelper
 import org.tuwaiq.recipes.view.home.profile.likes.LikesViewModel
 import xyz.hanks.library.bang.SmallBangView
-import kotlin.collections.ArrayList
 
 
 class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapterHolder>() {
@@ -64,8 +60,11 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
         holder.btnLike.setOnClickListener {
             if (holder.btnLike.isSelected()) {
                 //holder.btnLike.setSelected(false)
-                LikesViewModel().removeFromLikes(uid,lid, data[position].title).observeForever {
-                    holder.btnLike.isSelected = !it
+                LikesViewModel().getLikedName(uid,lid, data[position].title).observeForever {
+                    var rid = it[0].id
+                    LikesViewModel().removeFromLikes(uid, lid, rid).observeForever {
+                        holder.btnLike.isSelected = !it
+                    }
                 }
             } else {
                 //holder.btnLike.setSelected(true)

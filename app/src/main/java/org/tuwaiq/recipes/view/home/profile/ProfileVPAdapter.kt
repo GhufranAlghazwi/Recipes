@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.fragment.app.FragmentPagerAdapter
 import org.tuwaiq.recipes.view.home.profile.likes.LikedRecipesFragment
+import org.tuwaiq.recipes.view.home.profile.myrecipes.MyRecipesFragment
 
 
 class ProfileVPAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {

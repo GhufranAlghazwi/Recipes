@@ -7,7 +7,6 @@ import org.tuwaiq.recipes.model.Likes
 import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.network.API
 import org.tuwaiq.recipes.network.LikesService
-import org.tuwaiq.recipes.network.RecipeService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -66,15 +65,30 @@ class LikesRepository {
         return mLiveData
     }
 
-    fun getUserLikes(uid: String, lid: String): MutableLiveData<List<LikedRecipe>>{
-        var mLiveData = MutableLiveData<List<LikedRecipe>>()
+    fun getUserLikes(uid: String, lid: String): MutableLiveData<List<Recipe>>{
+        var mLiveData = MutableLiveData<List<Recipe>>()
 
-        likesService.getUserLikes(uid, lid).enqueue(object : Callback<List<LikedRecipe>> {
+        likesService.getUserLikes(uid, lid).enqueue(object : Callback<List<Recipe>> {
             override fun onResponse(
-                call: Call<List<LikedRecipe>>,
-                response: Response<List<LikedRecipe>>
+                call: Call<List<Recipe>>,
+                response: Response<List<Recipe>>
             ) {
                 mLiveData.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<Recipe>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+        return mLiveData
+    }
+
+    fun getLikedRecipeByName(uid: String, lid: String, rid: String): MutableLiveData<List<LikedRecipe>>{
+        var mLiveData = MutableLiveData<List<LikedRecipe>>()
+        likesService.getLikedRecipeByName(uid, lid, rid).enqueue(object : Callback<List<LikedRecipe>> {
+            override fun onResponse(call: Call<List<LikedRecipe>>, response: Response<List<LikedRecipe>>) {
+                if (response.isSuccessful)
+                    mLiveData.postValue(response.body())
             }
 
             override fun onFailure(call: Call<List<LikedRecipe>>, t: Throwable) {

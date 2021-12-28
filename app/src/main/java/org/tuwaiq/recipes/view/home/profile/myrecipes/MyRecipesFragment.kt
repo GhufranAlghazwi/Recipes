@@ -1,4 +1,4 @@
-package org.tuwaiq.recipes.view.home.profile
+package org.tuwaiq.recipes.view.home.profile.myrecipes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
-import org.tuwaiq.recipes.databinding.FragmentMyRecipesBinding
 import org.tuwaiq.recipes.model.Recipe
+import org.tuwaiq.recipes.view.home.profile.ProfileViewModel
 import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
 
 class MyRecipesFragment : Fragment() {

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.viewModels
 import org.tuwaiq.recipes.R
@@ -31,6 +32,11 @@ class RecipesFragment : Fragment() {
         dessertCard.setOnClickListener {
             startActivity(Intent(context, DessertsActivity::class.java))
         }
+
+        var allRecipesAdapter = v.findViewById<Button>(R.id.AllRecipesBtn)
+            .setOnClickListener {
+                startActivity(Intent(context, AllRecipesActivity::class.java))
+            }
 
 
 
