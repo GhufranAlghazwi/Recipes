@@ -143,4 +143,21 @@ class RecipesRepository {
 
         return mLiveData
     }
+
+    fun updateRecipe(id: String, recipe: Recipe): MutableLiveData<Recipe>{
+        var mLiveData = MutableLiveData<Recipe>()
+        recipeService.updateRecipe(id, recipe).enqueue(object : Callback<Recipe> {
+            override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
+                if (response.isSuccessful)
+                    mLiveData.postValue(response.body())
+                else
+                    mLiveData.postValue(Recipe("","","","","","","",""))
+            }
+
+            override fun onFailure(call: Call<Recipe>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+        return mLiveData
+    }
 }

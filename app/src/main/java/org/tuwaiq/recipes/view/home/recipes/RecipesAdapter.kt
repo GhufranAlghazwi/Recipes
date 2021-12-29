@@ -50,9 +50,11 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
 
         LikesViewModel().getUserLikes(uid, SharedPreferenceHelper.getLikesID(holder.cardItem.context))
             .observeForever {
-                for (r in it){
-                    if (r.title == data[position].title){
-                        holder.btnLike.isSelected = true
+                if (it != null){
+                    for (r in it){
+                        if (r.title == data[position].title){
+                            holder.btnLike.isSelected = true
+                        }
                     }
                 }
             }

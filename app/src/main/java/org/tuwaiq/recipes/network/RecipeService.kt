@@ -29,4 +29,7 @@ interface RecipeService {
 
     @DELETE("recipes/{id}")
     fun deleteRecipe(@Path("id")id: String):Call<Recipe>
+
+    @PUT("recipes/{id}")
+    fun updateRecipe(@Path("id")id: String, @Body recipe: Recipe): Call<Recipe>
 }

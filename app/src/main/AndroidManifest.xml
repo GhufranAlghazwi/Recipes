@@ -14,12 +14,15 @@
         android:theme="@style/Theme.Recipes"
         tools:replace="android:icon">
         <activity
+            android:name=".view.editRecipe.EditRecipeActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.home.recipes.AllRecipesActivity"
             android:exported="false" />
         <activity
             android:name=".view.recipeDetails.RecipeDetailsActivity"
             android:exported="false"
-            android:theme="@style/Theme.SplashScreen"/>
+            android:theme="@style/Theme.SplashScreen" />
         <activity
             android:name=".view.home.addRecipe.AddRecipeActivity"
             android:exported="false" />

@@ -16,6 +16,7 @@ import org.tuwaiq.recipes.databinding.ActivityRecipeDetailsBinding
 import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.util.Base64Helper
 import cn.pedant.SweetAlert.SweetAlertDialog
+import org.tuwaiq.recipes.view.editRecipe.EditRecipeActivity
 import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
 
 
@@ -77,6 +78,12 @@ class RecipeDetailsActivity : AppCompatActivity() {
                         })
                     }
                     .show()
+            }
+
+            binding.editButton.setOnClickListener {
+                var i = Intent(this, EditRecipeActivity::class.java)
+                i.putExtra("recipe", recipe)
+                startActivity(i)
             }
         }
 
