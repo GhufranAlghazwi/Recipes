@@ -18,7 +18,8 @@
             android:exported="false" />
         <activity
             android:name=".view.recipeDetails.RecipeDetailsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.SplashScreen"/>
         <activity
             android:name=".view.home.addRecipe.AddRecipeActivity"
             android:exported="false" />

@@ -1,7 +1,10 @@
 package org.tuwaiq.recipes.view.recipeDetails
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -19,6 +22,9 @@ import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
 class RecipeDetailsActivity : AppCompatActivity() {
     lateinit var binding: ActivityRecipeDetailsBinding
     var currentUser = Firebase.auth.currentUser
+    lateinit var titleRecipe: String
+    lateinit var ingr: String
+    lateinit var instr: String
     val vm: DetailsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,9 +35,20 @@ class RecipeDetailsActivity : AppCompatActivity() {
         var list = mutableListOf<Recipe>() as List<Recipe>
         var myAdapter = RecipesAdapter(list)
 
+        var mToolbar = binding.mToolBarDetails
+        mToolbar.title = "Recipe Details"
+        setSupportActionBar(mToolbar)
+        mToolbar.setNavigationOnClickListener {
+            finish()
+        }
+
         var recipe = intent.getSerializableExtra("recipe") as Recipe
         //var recipe1 = intent.getSerializableExtra("recipe1") as LikedRecipe
         var position = intent.getIntExtra("position", 0)
+
+        titleRecipe = recipe.title
+        ingr = recipe.ingredients
+        instr = recipe.instructions
 
         if (currentUser?.uid == recipe.uid) {
             binding.editButton.isVisible = true
@@ -94,4 +111,31 @@ class RecipeDetailsActivity : AppCompatActivity() {
         }
         setContentView(binding.root)
     }
+
+    //menu options\btns
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.details_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+
+    //Sort and Filter in toolbar
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.shareRecipe -> {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "$titleRecipe\n$ingr\n$instr")
+                    type = "text/plain"
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
 }
+
