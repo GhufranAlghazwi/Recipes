@@ -21,6 +21,13 @@ class MainDishesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainDishesBinding.inflate(layoutInflater)
 
+        var mToolbar = binding.mToolBarMain
+        mToolbar.title = "Main Dishes"
+        setSupportActionBar(mToolbar)
+        mToolbar.setNavigationOnClickListener {
+            finish()
+        }
+
         var mRecyclerView = binding.mainDishesRecyclerView
         mRecyclerView.layoutManager = GridLayoutManager(this, 2)
 

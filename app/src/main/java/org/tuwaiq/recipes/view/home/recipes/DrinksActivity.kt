@@ -14,7 +14,14 @@ class DrinksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDrinksBinding.inflate(layoutInflater)
 
-        var mRecyclerView = binding.vegeRecyclerView
+        var mToolbar = binding.mToolBarDrinks
+        mToolbar.title = "Drinks"
+        setSupportActionBar(mToolbar)
+        mToolbar.setNavigationOnClickListener {
+            finish()
+        }
+
+        var mRecyclerView = binding.drinksRecyclerView
         mRecyclerView.layoutManager = GridLayoutManager(this, 2)
 
         vm.getDrinks().observe(this,{

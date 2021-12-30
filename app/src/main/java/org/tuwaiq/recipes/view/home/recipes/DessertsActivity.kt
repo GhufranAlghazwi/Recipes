@@ -14,6 +14,13 @@ class DessertsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDessertsBinding.inflate(layoutInflater)
 
+        var mToolbar = binding.mToolBarDessert
+        mToolbar.title = "Dessert"
+        setSupportActionBar(mToolbar)
+        mToolbar.setNavigationOnClickListener {
+            finish()
+        }
+
         var mRecyclerView = binding.dessertRecyclerView
         mRecyclerView.layoutManager = GridLayoutManager(this, 2)
 

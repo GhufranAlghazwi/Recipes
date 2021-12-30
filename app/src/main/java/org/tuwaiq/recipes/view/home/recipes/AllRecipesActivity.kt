@@ -13,6 +13,13 @@ class AllRecipesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAllRecipesBinding.inflate(layoutInflater)
 
+        var mToolbar = binding.mToolBarAllRecipes
+        mToolbar.title = "All Recipes"
+        setSupportActionBar(mToolbar)
+        mToolbar.setNavigationOnClickListener {
+            finish()
+        }
+
         binding.allRecipesRV.layoutManager = GridLayoutManager(this, 2)
         vm.getAll().observe(this, {
             binding.allRecipesRV.adapter = RecipesAdapter(it)

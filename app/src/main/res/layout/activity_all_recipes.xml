@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".view.home.recipes.AllRecipesActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/topBarLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/allRecipesRV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/mToolBarAllRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title=""
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allRecipesRV"
         android:layout_width="0dp"
@@ -13,5 +33,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/topBarLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

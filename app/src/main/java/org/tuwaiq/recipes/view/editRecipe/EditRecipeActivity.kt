@@ -1,13 +1,19 @@
 package org.tuwaiq.recipes.view.editRecipe
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.util.Base64
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.squareup.picasso.Picasso
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityEditRecipeBinding
@@ -17,6 +23,9 @@ import org.tuwaiq.recipes.view.recipeDetails.RecipeDetailsActivity
 
 class EditRecipeActivity : AppCompatActivity() {
     lateinit var binding: ActivityEditRecipeBinding
+    lateinit var imagePicker: ImageView
+    lateinit var encodedImage: String
+
     val vm: EditRecipeViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +50,15 @@ class EditRecipeActivity : AppCompatActivity() {
         binding.editIngrInput.text = Editable.Factory.getInstance().newEditable(recipe.ingredients)
         binding.editRecipeInstructionInput.text = Editable.Factory.getInstance().newEditable(recipe.instructions)
 
+        imagePicker= binding.editRecipeImage
+        imagePicker.setOnClickListener {
+            ImagePicker.with(this)
+                .crop(1f,1f)
+                .compress(32)
+                .maxResultSize(1080,1080)
+                .start()
+        }
+
         binding.cancelEditingBtn.setOnClickListener {
             finish()
         }
@@ -53,7 +71,7 @@ class EditRecipeActivity : AppCompatActivity() {
             var ingr = binding.editIngrInput.text.toString()
             var uid = recipe.uid
 
-            var updatedRecipe = Recipe(title, recipe.image, time, instructions, category, ingr, uid!!,"")
+            var updatedRecipe = Recipe(title, encodedImage, time, instructions, category, ingr, uid!!,"")
             vm.updateRecipe(recipe.id, updatedRecipe).observe(this, {
                 if (it!=null){
                     Toast.makeText(this, "Recipe updated successfully", Toast.LENGTH_LONG).show()
@@ -64,5 +82,26 @@ class EditRecipeActivity : AppCompatActivity() {
             })
         }
         setContentView(binding.root)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+
+            val uri: Uri = data?.data!!
+            imagePicker.setImageURI(uri)
+
+            //encode
+            encodedImage = Base64Helper.encodeImage(uri)
+
+            //decode
+            var bytes = Base64.decode(encodedImage, Base64.DEFAULT)
+            var decodedImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+        }
     }
 }
