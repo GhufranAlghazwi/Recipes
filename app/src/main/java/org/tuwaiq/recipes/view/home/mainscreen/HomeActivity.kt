@@ -25,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
 
         var mToolbar = binding.mToolBar
-        mToolbar.title = "Recipes"
+        mToolbar.title = getString(R.string.app_name)
         setSupportActionBar(mToolbar)
         mToolbar.setNavigationOnClickListener {
             finish()
@@ -38,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
         binding.bNavView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ProfileFragment -> {
-                    mToolbar.title = "Profile"
+                    mToolbar.title = getString(R.string.profile)
                     vm.checkLogin(currentUser).observe(this, {
                         if (it) {
                             supportFragmentManager.beginTransaction()
@@ -53,14 +53,14 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.recipes -> {
-                    mToolbar.title = "Recipes"
+                    mToolbar.title = getString(R.string.recipes)
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.mFrameLayout, RecipesFragment())
                         .commit()
                     true
                 }
                 R.id.addRecipe -> {
-                    mToolbar.title = "Share Recipe"
+                    mToolbar.title = getString(R.string.add_recipe)
                     vm.checkLogin(currentUser).observe(this, {
                         if (it) {
                             startActivity(Intent(this, AddRecipeActivity::class.java))
@@ -80,7 +80,7 @@ class HomeActivity : AppCompatActivity() {
 //                    true
 //                }
                 R.id.search -> {
-                    mToolbar.title = "Search"
+                    mToolbar.title = getString(R.string.search)
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.mFrameLayout, SearchFragment())
                         .commit()

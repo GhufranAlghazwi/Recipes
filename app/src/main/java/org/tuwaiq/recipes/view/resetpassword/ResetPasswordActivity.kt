@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityResetPasswordBinding
 import org.tuwaiq.recipes.view.login.LoginActivity
 
@@ -21,12 +22,12 @@ class ResetPasswordActivity : AppCompatActivity() {
         binding.resetButton.setOnClickListener {
             vm.resetPass(email.text.toString()).observe(this,{
                 if (it){
-                    Toast.makeText(this, "Email has been sent to you", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.email_sent), Toast.LENGTH_LONG).show()
                     startActivity(Intent(this, LoginActivity::class.java))
                 }
 
                 else
-                    Toast.makeText(this, "Failed to send reset email", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.failed_to_send_email), Toast.LENGTH_LONG).show()
             })
         }
 

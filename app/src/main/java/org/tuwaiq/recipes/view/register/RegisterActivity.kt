@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityRegisterBinding
 import org.tuwaiq.recipes.model.User
 import org.tuwaiq.recipes.view.login.LoginActivity
@@ -26,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.RegisterButton.setOnClickListener {
             if (name.text!!.isEmpty() || email.text!!.isEmpty() || password.text!!.isEmpty()) {
-                Toast.makeText(this, "Fill all fields to login", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.fill_all_register), Toast.LENGTH_LONG).show()
             } else {
                 vm.register(name.text.toString(), email.text.toString(), password.text.toString())
                     .observe(this, {
@@ -35,13 +36,13 @@ class RegisterActivity : AppCompatActivity() {
                             vm.addUser(user)
                                 .observe(this, {
                                     if (it) {
-                                        Toast.makeText(this, "Register success", Toast.LENGTH_LONG)
+                                        Toast.makeText(this, getString(R.string.register_success), Toast.LENGTH_LONG)
                                             .show()
                                     }
                                     startActivity(Intent(this, LoginActivity::class.java))
                                 })
                         } else {
-                            Toast.makeText(this, "Failed to Register", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, getString(R.string.register_failed), Toast.LENGTH_LONG).show()
                         }
                     })
             }

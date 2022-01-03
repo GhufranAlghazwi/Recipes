@@ -9,18 +9,18 @@
         android:id="@+id/recipes"
         android:enabled="true"
         android:icon="@drawable/soup"
-        android:title="Recipes" />
+        android:title="@string/recipes" />
     <item
         android:id="@+id/search"
         android:enabled="true"
-        android:title="Search"
+        android:title="@string/search"
         android:icon="@drawable/ic_baseline_search_24"
         />
     <item
         android:id="@+id/addRecipe"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_add_24"
-        android:title="Add Recipe"
+        android:title="@string/add_recipe"
         />
 <!--    <item-->
 <!--        android:id="@+id/likes"-->
@@ -31,5 +31,5 @@
         android:id="@+id/ProfileFragment"
         android:enabled="true"
         android:icon="@drawable/user"
-        android:title="Profile" />
+        android:title="@string/profile" />
 </menu>

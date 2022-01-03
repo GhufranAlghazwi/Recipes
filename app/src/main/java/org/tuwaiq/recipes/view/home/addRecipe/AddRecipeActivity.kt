@@ -60,13 +60,17 @@ class AddRecipeActivity : AppCompatActivity() {
             var recipe = Recipe(title, encodedImage, time, instructions, category, ingr, uid!!,"")
             vm.addRecipe(recipe).observe(this, {
                 if (it!=null){
-                    Toast.makeText(this, "Recipe added", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.recipe_added), Toast.LENGTH_LONG).show()
                     var i = Intent(this, RecipeDetailsActivity::class.java)
                     i.putExtra("recipe", recipe)
                     startActivity(i)
                 }
 
             })
+        }
+
+        binding.cancelButton.setOnClickListener {
+            finish()
         }
 
 
@@ -90,7 +94,7 @@ class AddRecipeActivity : AppCompatActivity() {
         } else if (resultCode == ImagePicker.RESULT_ERROR) {
             Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.task_cancelled), Toast.LENGTH_SHORT).show()
         }
     }
 }

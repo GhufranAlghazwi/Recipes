@@ -32,7 +32,7 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
         var lid = SharedPreferenceHelper.getLikesID(holder.btnLike.context)
 
         holder.recipeName.text = data[position].title
-        holder.time.text = data[position].readyInMinutes + " Min."
+        holder.time.text = data[position].readyInMinutes + " " +holder.time.context.getString(R.string.min)
         if (Base64Helper.isBase64(data[position].image)) {
             var image = Base64Helper.decodeImage(holder.recipeImg.context, data[position].image)
             holder.recipeImg.setImageBitmap(image)

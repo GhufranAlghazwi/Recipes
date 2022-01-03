@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityLoginBinding
 import org.tuwaiq.recipes.util.SharedPreferenceHelper
 import org.tuwaiq.recipes.view.home.mainscreen.HomeActivity
@@ -27,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginButton.setOnClickListener {
             if (email.text!!.isEmpty() || password.text!!.isEmpty()) {
-                Toast.makeText(this, "Fill all fields to login", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_LONG).show()
             } else {
                 vm.login(email.text.toString(), password.text.toString())
                     .observe(this, {
@@ -36,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
                                 var id = it[0].id
                                 SharedPreferenceHelper.saveUserID(this, id)
                                 startActivity(Intent(this, HomeActivity::class.java))
-                                Toast.makeText(this, "Login success", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_LONG).show()
                                 ////
                                 var uid = SharedPreferenceHelper.getUserID(this)
                                 vm2.getLidByUid(uid, uid).observe(this, {
@@ -53,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
 
                         }
                         else{
-                            Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
                         }
 
                     })

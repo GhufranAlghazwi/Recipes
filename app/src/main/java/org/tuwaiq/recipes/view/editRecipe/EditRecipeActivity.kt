@@ -74,7 +74,7 @@ class EditRecipeActivity : AppCompatActivity() {
             var updatedRecipe = Recipe(title, encodedImage, time, instructions, category, ingr, uid!!,"")
             vm.updateRecipe(recipe.id, updatedRecipe).observe(this, {
                 if (it!=null){
-                    Toast.makeText(this, "Recipe updated successfully", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.recipe_updated), Toast.LENGTH_LONG).show()
                     var i = Intent(this, RecipeDetailsActivity::class.java)
                     i.putExtra("recipe", it)
                     startActivity(i)
@@ -101,7 +101,7 @@ class EditRecipeActivity : AppCompatActivity() {
         } else if (resultCode == ImagePicker.RESULT_ERROR) {
             Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.task_cancelled), Toast.LENGTH_SHORT).show()
         }
     }
 }

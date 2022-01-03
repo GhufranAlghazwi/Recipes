@@ -33,4 +33,19 @@
     <string name="login_here">Login Here.</string>
     <string name="to_create_and_share_your_own_recipes_please_sign_up">To create and share your own recipes, please sign up!</string>
     <string name="min">Min.</string>
+    <string name="profile">Profile</string>
+    <string name="recipes">Recipes</string>
+    <string name="add_recipe">Add New Recipe</string>
+    <string name="search">Search</string>
+    <string name="recipe_updated">Recipe updated successfully</string>
+    <string name="task_cancelled">Task Cancelled</string>
+    <string name="recipe_added">Recipe added</string>
+    <string name="fill_all_fields">Fill all fields to login</string>
+    <string name="login_successful">Login success</string>
+    <string name="login_failed">Login Failed</string>
+    <string name="fill_all_register">Fill all fields to register</string>
+    <string name="register_success">Register success</string>
+    <string name="register_failed">Failed to Register</string>
+    <string name="email_sent">Email has been sent to you</string>
+    <string name="failed_to_send_email">Failed to send reset email</string>
 </resources>
