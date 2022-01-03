@@ -18,6 +18,7 @@ import org.tuwaiq.recipes.util.Base64Helper
 import cn.pedant.SweetAlert.SweetAlertDialog
 import org.tuwaiq.recipes.view.editRecipe.EditRecipeActivity
 import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
+import org.tuwaiq.recipes.view.home.recipes.RecipesViewModel
 
 
 class RecipeDetailsActivity : AppCompatActivity() {
@@ -33,19 +34,18 @@ class RecipeDetailsActivity : AppCompatActivity() {
         binding = ActivityRecipeDetailsBinding.inflate(layoutInflater)
         var expandableIngr = binding.expandablengr
         var cardViewIngr = binding.cardViewIngr
-        var list = mutableListOf<Recipe>() as List<Recipe>
-        var myAdapter = RecipesAdapter(list)
 
-        var mToolbar = binding.mToolBarDetails
-        mToolbar.title = "Recipe Details"
-        setSupportActionBar(mToolbar)
-        mToolbar.setNavigationOnClickListener {
-            finish()
-        }
 
         var recipe = intent.getSerializableExtra("recipe") as Recipe
         //var recipe1 = intent.getSerializableExtra("recipe1") as LikedRecipe
         var position = intent.getIntExtra("position", 0)
+
+        var mToolbar = binding.mToolBarDetails
+        mToolbar.title = "${recipe.title}"
+        setSupportActionBar(mToolbar)
+        mToolbar.setNavigationOnClickListener {
+            finish()
+        }
 
         titleRecipe = recipe.title
         ingr = recipe.ingredients
@@ -68,7 +68,6 @@ class RecipeDetailsActivity : AppCompatActivity() {
                                     .setConfirmText("OK")
                                     .setConfirmClickListener{
                                         finish()
-                                        myAdapter.removeAt(position)
                                     }
                                     .changeAlertType(SweetAlertDialog.SUCCESS_TYPE)
                             } else {

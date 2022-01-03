@@ -27,7 +27,9 @@ class LikedRecipesFragment : Fragment() {
             SharedPreferenceHelper.getUserID(requireContext()),
             SharedPreferenceHelper.getLikesID(requireContext())
         ).observe(viewLifecycleOwner, {
-            recyclerView.adapter = RecipesAdapter (it)
+            var myAdapter = RecipesAdapter(it)
+            recyclerView.adapter = myAdapter
+            myAdapter.notifyDataSetChanged()
         })
         return v
     }

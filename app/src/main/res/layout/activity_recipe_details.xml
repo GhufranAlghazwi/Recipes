@@ -9,7 +9,6 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/topBarLayoutDetails"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/scrollViewDetails"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="0dp"
@@ -36,7 +35,7 @@
         app:layout_constraintBottom_toTopOf="@id/deleteButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/topBarLayoutDetails">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -260,7 +259,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/deleteButton"
-        app:layout_constraintTop_toBottomOf="@+id/scrollViewDetails" />
+        />
 
     <Button
         android:id="@+id/deleteButton"
@@ -275,6 +274,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/editButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollViewDetails" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,8 +18,6 @@ import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
 class MyRecipesFragment : Fragment() {
     val vm: ProfileViewModel by viewModels()
     var currentUser = Firebase.auth.uid
-    var list = mutableListOf<Recipe>() as List<Recipe>
-    var myAdapter = RecipesAdapter(list)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -27,7 +25,9 @@ class MyRecipesFragment : Fragment() {
         var recyclerView = v.findViewById<RecyclerView>(R.id.myRecipesRV)
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         vm.getUserRecipes(currentUser!!).observeForever{
-            recyclerView.adapter = RecipesAdapter(it)
+            var myAdapter = RecipesAdapter(it)
+            recyclerView.adapter = myAdapter
+            myAdapter.notifyDataSetChanged()
         }
         return v
     }

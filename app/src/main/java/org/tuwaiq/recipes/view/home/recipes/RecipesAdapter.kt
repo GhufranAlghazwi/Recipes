@@ -66,6 +66,8 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
                     var rid = it[0].id
                     LikesViewModel().removeFromLikes(uid, lid, rid).observeForever {
                         holder.btnLike.isSelected = !it
+                        dataList.removeAt(position)
+                        notifyDataSetChanged()
                     }
                 }
             } else {
@@ -90,6 +92,7 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
                     }
                 }
             }
+            notifyDataSetChanged()
             }
         }
 
@@ -103,6 +106,7 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
         notifyItemRemoved(position)
         notifyDataSetChanged()
     }
+
 }
 
 class RecipesAdapterHolder(v: View) : RecyclerView.ViewHolder(v) {
