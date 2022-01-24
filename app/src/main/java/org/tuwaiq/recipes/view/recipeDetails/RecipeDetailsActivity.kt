@@ -56,22 +56,22 @@ class RecipeDetailsActivity : AppCompatActivity() {
             binding.deleteButton.isVisible = true
             binding.deleteButton.setOnClickListener {
                 SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Are you sure?")
-                    .setContentText("Won't be able to recover this recipe!")
-                    .setConfirmText("Yes,delete it!")
+                    .setTitleText(getString(R.string.are_you_sure))
+                    .setContentText(getString(R.string.delete_msg))
+                    .setConfirmText(getString(R.string.yes_delete_it))
                     .setConfirmClickListener { sDialog ->
                         vm.deleteRecipe(recipe.id).observe(this, {
                             if (it) {
                                 sDialog
-                                    .setTitleText("Deleted!")
-                                    .setContentText("Your recipe has been deleted!")
+                                    .setTitleText(getString(R.string.deleted))
+                                    .setContentText(getString(R.string.your_recipe_deleted))
                                     .setConfirmText("OK")
                                     .setConfirmClickListener{
                                         finish()
                                     }
                                     .changeAlertType(SweetAlertDialog.SUCCESS_TYPE)
                             } else {
-                                Toast.makeText(this, "Failed to delete", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, getString(R.string.failed_to_delete), Toast.LENGTH_SHORT).show()
                             }
 
                         })
@@ -125,7 +125,6 @@ class RecipeDetailsActivity : AppCompatActivity() {
     }
 
 
-    //Sort and Filter in toolbar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.shareRecipe -> {

@@ -45,4 +45,9 @@ class MyPagerAdapter(fragmentManager: FragmentManager?) :
         return "Page $position"
     }
 
+    override fun getItemPosition(`object`: Any): Int {
+        return POSITION_NONE
+        //return super.getItemPosition(`object`)
+    }
+
 }

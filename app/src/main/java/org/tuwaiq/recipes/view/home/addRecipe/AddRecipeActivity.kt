@@ -24,6 +24,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
+import cn.pedant.SweetAlert.SweetAlertDialog
+import org.tuwaiq.recipes.view.home.mainscreen.HomeActivity
+import org.tuwaiq.recipes.view.home.profile.userprofile.ProfileFragment
+
 
 class AddRecipeActivity : AppCompatActivity() {
     lateinit var binding: ActivityAddRecipeBinding
@@ -61,9 +65,17 @@ class AddRecipeActivity : AppCompatActivity() {
             vm.addRecipe(recipe).observe(this, {
                 if (it!=null){
                     Toast.makeText(this, getString(R.string.recipe_added), Toast.LENGTH_LONG).show()
-                    var i = Intent(this, RecipeDetailsActivity::class.java)
-                    i.putExtra("recipe", recipe)
-                    startActivity(i)
+                    SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Good job!")
+                        .setContentText(getString(R.string.recipe_added))
+                        .setConfirmClickListener {
+                            var i = Intent(this, HomeActivity::class.java)
+                            i.putExtra("frgToLoad", "ProfileFragment")
+                            //i.putExtra("recipe", recipe)
+                            startActivity(i)
+                        }
+                        .show()
+
                 }
 
             })

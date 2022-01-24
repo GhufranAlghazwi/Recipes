@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Recipes" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#93B5C6</item>
-        <item name="colorPrimaryVariant">#C9CCD5</item>
+        <item name="colorPrimary">#F28705</item>
+        <item name="colorPrimaryVariant">#F2F2F2</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -17,8 +17,8 @@
 
     <style name="Theme.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#93B5C6</item>
-        <item name="colorPrimaryVariant">#C9CCD5</item>
+        <item name="colorPrimary">#F28705</item>
+        <item name="colorPrimaryVariant">#F2F2F2</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

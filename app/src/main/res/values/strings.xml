@@ -48,4 +48,10 @@
     <string name="register_failed">Failed to Register</string>
     <string name="email_sent">Email has been sent to you</string>
     <string name="failed_to_send_email">Failed to send reset email</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="delete_msg">Won\'t be able to recover this recipe!</string>
+    <string name="yes_delete_it">Yes,delete it!</string>
+    <string name="deleted">Deleted!</string>
+    <string name="your_recipe_deleted">Your recipe has been deleted!</string>
+    <string name="failed_to_delete">Failed to delete</string>
 </resources>

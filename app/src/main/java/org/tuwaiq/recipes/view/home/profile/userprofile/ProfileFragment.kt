@@ -44,14 +44,6 @@ class ProfileFragment : Fragment() {
 
         }
 
-        var logout = v.findViewById<ImageView>(R.id.logoutIcon)
-        logout.setOnClickListener {
-            Firebase.auth.signOut()
-            Toast.makeText(context, "Logout successfully", Toast.LENGTH_SHORT).show()
-            //updateUI(currentUser)
-            context?.startActivity(Intent(context, HomeActivity::class.java))
-        }
-
         var viewPager2 = v.findViewById<ViewPager2>(R.id.profileViewPager)
         viewPager2.adapter = ProfileVPAdapter(this)
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Recipes</string>
+    <string name="app_name">وصفات</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="recipe_name">اسم الوصفة</string>
@@ -48,4 +48,10 @@
     <string name="register_failed">فشل التسجيل</string>
     <string name="email_sent">تم إرسال بريد إستعادة كلمة المرور</string>
     <string name="failed_to_send_email">فشل الإرسال</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="delete_msg">Won\'t be able to recover this recipe!</string>
+    <string name="yes_delete_it">Yes,delete it!</string>
+    <string name="deleted">Deleted!</string>
+    <string name="your_recipe_deleted">Your recipe has been deleted!</string>
+    <string name="failed_to_delete">Failed to delete</string>
 </resources>
