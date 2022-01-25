@@ -120,7 +120,7 @@
                             android:alpha="0.8"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/down_arrow" />
+                            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
                         <TextView
                             android:id="@+id/textViewIngredients"
@@ -199,7 +199,7 @@
                             android:alpha="0.8"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/down_arrow" />
+                            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
                         <TextView
                             android:id="@+id/textViewInstruction"

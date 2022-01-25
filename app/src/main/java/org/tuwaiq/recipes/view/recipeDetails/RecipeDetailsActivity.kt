@@ -101,9 +101,9 @@ class RecipeDetailsActivity : AppCompatActivity() {
         cardViewIngr.setOnClickListener {
             expandableIngr.isVisible = !expandableIngr.isVisible
             if (!expandableIngr.isVisible) {
-                binding.imageView6.setImageResource(R.drawable.arrow_right)
+                binding.imageView6.setImageResource(R.drawable.arrow_forward_grey)
             } else
-                binding.imageView6.setImageResource(R.drawable.down_arrow)
+                binding.imageView6.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
         }
 
 
@@ -111,9 +111,9 @@ class RecipeDetailsActivity : AppCompatActivity() {
         binding.cardViewInstruction.setOnClickListener {
             binding.expandablInstruction.isVisible = !binding.expandablInstruction.isVisible
             if (!binding.expandablInstruction.isVisible) {
-                binding.imageView7.setImageResource(R.drawable.arrow_right)
+                binding.imageView7.setImageResource(R.drawable.arrow_forward_grey)
             } else
-                binding.imageView7.setImageResource(R.drawable.down_arrow)
+                binding.imageView7.setImageResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
         }
         setContentView(binding.root)
     }

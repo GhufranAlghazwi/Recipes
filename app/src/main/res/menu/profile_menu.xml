@@ -9,6 +9,6 @@
         android:id="@+id/likes"
         android:enabled="true"
         android:title="Likes"
-        android:icon="@drawable/heart"/>
+        android:icon="@drawable/heart_white_1"/>
 
 </menu>

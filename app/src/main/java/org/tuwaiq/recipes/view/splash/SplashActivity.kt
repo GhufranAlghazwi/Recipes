@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
                 LocalizationHelper.changeLanguage(this, language)
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
-        },2000)
+        },4000)
 
         setContentView(binding.root)
     }

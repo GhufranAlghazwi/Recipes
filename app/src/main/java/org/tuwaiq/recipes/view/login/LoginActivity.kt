@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.widget.addTextChangedListener
 import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.databinding.ActivityLoginBinding
 import org.tuwaiq.recipes.util.SharedPreferenceHelper
+import org.tuwaiq.recipes.util.ValidatorHelper
 import org.tuwaiq.recipes.view.home.mainscreen.HomeActivity
 import org.tuwaiq.recipes.view.home.profile.likes.LikesViewModel
 import org.tuwaiq.recipes.view.register.RegisterActivity
@@ -25,6 +27,13 @@ class LoginActivity : AppCompatActivity() {
 
         var email = binding.loginEmailEditText
         var password = binding.loginPasswordEditText
+
+        email.addTextChangedListener{
+            if (it!!.isEmpty())
+                email.error = "Required"
+            else if(!ValidatorHelper.validateEmail(it.toString()))
+                email.error = "Invalid Email format"
+        }
 
         binding.loginButton.setOnClickListener {
             if (email.text!!.isEmpty() || password.text!!.isEmpty()) {

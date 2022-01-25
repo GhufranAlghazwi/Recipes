@@ -12,7 +12,7 @@ class ValidatorHelper {
     companion object{
 
         fun validateEmail(email: String): Boolean{
-            return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+            return Patterns.EMAIL_ADDRESS.matcher(email).matches()
         }
 
         fun validatePassword(pass: String): Boolean{

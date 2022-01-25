@@ -3,7 +3,7 @@
     <style name="Theme.Recipes" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#F28705</item>
-        <item name="colorPrimaryVariant">#F2F2F2</item>
+        <item name="colorPrimaryVariant">#FED2AA</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -18,7 +18,7 @@
     <style name="Theme.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#F28705</item>
-        <item name="colorPrimaryVariant">#F2F2F2</item>
+        <item name="colorPrimaryVariant">#FED2AA</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
