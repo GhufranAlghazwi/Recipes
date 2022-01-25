@@ -174,6 +174,8 @@ class HomeActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.logout -> {
                 Firebase.auth.signOut()
+                SharedPreferenceHelper.saveLikesID(this, "null")
+                SharedPreferenceHelper.saveUserID(this, "null")
                 Toast.makeText(this, "Logout successfully", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, HomeActivity::class.java))
             }

@@ -22,7 +22,7 @@
             android:id="@+id/usernameShortCut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TV"
+            android:text=""
             android:layout_gravity="center"
             android:textSize="32sp"
             android:textColor="@color/white"/>
@@ -33,8 +33,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:text="Name"
+        android:layout_marginTop="35dp"
+        android:text=""
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="parent" />

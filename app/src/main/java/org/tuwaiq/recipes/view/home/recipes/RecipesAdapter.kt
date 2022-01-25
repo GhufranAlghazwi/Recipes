@@ -18,6 +18,10 @@ import org.tuwaiq.recipes.model.Likes
 import org.tuwaiq.recipes.util.SharedPreferenceHelper
 import org.tuwaiq.recipes.view.home.profile.likes.LikesViewModel
 import xyz.hanks.library.bang.SmallBangView
+import cn.pedant.SweetAlert.SweetAlertDialog
+
+
+
 
 
 class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapterHolder>() {
@@ -60,6 +64,12 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
             }
 
         holder.btnLike.setOnClickListener {
+            if (SharedPreferenceHelper.getUserID(holder.btnLike.context) == "null"){
+                SweetAlertDialog(holder.btnLike.context, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Oops...")
+                    .setContentText("Sign up to like this recipe.")
+                    .show()
+            }
             if (holder.btnLike.isSelected()) {
                 //holder.btnLike.setSelected(false)
                 LikesViewModel().getLikedName(uid,lid, data[position].title).observeForever {

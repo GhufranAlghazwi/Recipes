@@ -38,9 +38,9 @@ class ProfileFragment : Fragment() {
             name.text = username
             val listName = username.split(" ")
             if (listName.size >= 2)
-                shortCut.text = listName[0].first() +""+ listName[1].first()
+                shortCut.text = listName[0].first().toUpperCase() +""+ listName[1].first().toUpperCase()
             else if (listName.size == 1)
-                shortCut.text = listName[0].first() +""
+                shortCut.text = listName[0].first() +"".toUpperCase()
 
         }
 
