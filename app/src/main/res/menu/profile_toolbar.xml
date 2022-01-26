@@ -14,7 +14,7 @@
         android:id="@+id/logout"
         android:icon="@drawable/logout_ic1"
         android:title="Logout"
-        android:visible="false"
+        android:visible="true"
         app:showAsAction="always"
         />
 

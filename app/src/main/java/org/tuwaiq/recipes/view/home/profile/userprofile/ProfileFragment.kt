@@ -2,10 +2,8 @@ package org.tuwaiq.recipes.view.home.profile.userprofile
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -15,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.tuwaiq.recipes.R
+import org.tuwaiq.recipes.util.SharedPreferenceHelper
 import org.tuwaiq.recipes.view.home.mainscreen.HomeActivity
 import org.tuwaiq.recipes.view.home.profile.ProfileVPAdapter
 
@@ -27,6 +26,7 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_profile, container, false)
 
@@ -76,6 +76,25 @@ class ProfileFragment : Fragment() {
 
 
         return v
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.profile_toolbar, menu)
+        menu.findItem(R.id.localize).isVisible = false
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.logout -> {
+                Firebase.auth.signOut()
+                SharedPreferenceHelper.saveLikesID(requireContext(), "null")
+                SharedPreferenceHelper.saveUserID(requireContext(), "null")
+                Toast.makeText(this.context, "Logout successfully", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this.context, HomeActivity::class.java))
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

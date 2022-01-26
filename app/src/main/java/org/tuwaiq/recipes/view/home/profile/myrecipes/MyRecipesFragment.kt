@@ -19,14 +19,20 @@ class MyRecipesFragment : Fragment() {
     val vm: ProfileViewModel by viewModels()
     var currentUser = Firebase.auth.uid
 
+    var recipesList = mutableListOf<Recipe>()
+
+    var myAdapter = RecipesAdapter(recipesList)
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_my_recipes, container, false)
         var recyclerView = v.findViewById<RecyclerView>(R.id.myRecipesRV)
         recyclerView.layoutManager = GridLayoutManager(context, 2)
+        recyclerView.adapter = myAdapter
+
         vm.getUserRecipes(currentUser!!).observeForever{
-            var myAdapter = RecipesAdapter(it)
-            recyclerView.adapter = myAdapter
+            recipesList.clear()
+            recipesList.addAll(it)
             myAdapter.notifyDataSetChanged()
         }
         return v

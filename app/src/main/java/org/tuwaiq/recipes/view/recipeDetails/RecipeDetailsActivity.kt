@@ -17,6 +17,7 @@ import org.tuwaiq.recipes.model.Recipe
 import org.tuwaiq.recipes.util.Base64Helper
 import cn.pedant.SweetAlert.SweetAlertDialog
 import org.tuwaiq.recipes.view.editRecipe.EditRecipeActivity
+import org.tuwaiq.recipes.view.home.mainscreen.HomeActivity
 import org.tuwaiq.recipes.view.home.recipes.RecipesAdapter
 import org.tuwaiq.recipes.view.home.recipes.RecipesViewModel
 
@@ -67,7 +68,11 @@ class RecipeDetailsActivity : AppCompatActivity() {
                                     .setContentText(getString(R.string.your_recipe_deleted))
                                     .setConfirmText("OK")
                                     .setConfirmClickListener{
-                                        finish()
+//                                        finish()
+                                        var i = Intent(this, HomeActivity::class.java)
+                                        i.putExtra("frgToLoad", "ProfileFragment")
+                                        //i.putExtra("recipe", recipe)
+                                        startActivity(i)
                                     }
                                     .changeAlertType(SweetAlertDialog.SUCCESS_TYPE)
                             } else {

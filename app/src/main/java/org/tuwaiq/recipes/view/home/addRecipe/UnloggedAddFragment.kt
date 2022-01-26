@@ -12,7 +12,7 @@ import org.tuwaiq.recipes.R
 import org.tuwaiq.recipes.view.login.LoginActivity
 import org.tuwaiq.recipes.view.register.RegisterActivity
 
-class unloggedAddFragment : Fragment() {
+class UnloggedAddFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment

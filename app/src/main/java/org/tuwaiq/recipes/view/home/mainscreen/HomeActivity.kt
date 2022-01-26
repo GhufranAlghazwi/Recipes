@@ -23,6 +23,7 @@ import org.tuwaiq.recipes.util.LocalizationHelper
 import org.tuwaiq.recipes.util.NotificationHelper
 import org.tuwaiq.recipes.util.SharedPreferenceHelper
 import org.tuwaiq.recipes.view.home.addRecipe.AddRecipeActivity
+import org.tuwaiq.recipes.view.home.addRecipe.UnloggedAddFragment
 import org.tuwaiq.recipes.view.home.profile.userprofile.ProfileFragment
 import org.tuwaiq.recipes.view.home.profile.userprofile.UnloggedFragment
 import org.tuwaiq.recipes.view.home.recipes.RecipesFragment
@@ -33,7 +34,6 @@ class HomeActivity : AppCompatActivity() {
     val vm: HomeViewModel by viewModels()
     var auth = Firebase.auth
     val currentUser = auth.currentUser
-    lateinit var myMenu: Menu
     lateinit var mToolbar: MaterialToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +66,6 @@ class HomeActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.mFrameLayout, ProfileFragment())
                 .commit()
-            myMenu.findItem(R.id.logout).setVisible(true)
             binding.bNavView.menu.findItem(R.id.ProfileFragment).setChecked(true)
         }
         else{
@@ -84,15 +83,13 @@ class HomeActivity : AppCompatActivity() {
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.mFrameLayout, ProfileFragment())
                                 .commit()
-                            myMenu.findItem(R.id.logout).setVisible(true)
                         } else {
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.mFrameLayout, UnloggedFragment())
                                 .commit()
-                            myMenu.findItem(R.id.logout).setVisible(false)
                         }
                     })
-                    hideLocalizeIcon()
+                    //hideLocalizeIcon()
                     true
                 }
                 R.id.recipes -> {
@@ -100,8 +97,6 @@ class HomeActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.mFrameLayout, RecipesFragment())
                         .commit()
-                    myMenu.findItem(R.id.logout).setVisible(false)
-                    myMenu.findItem(R.id.localize).setVisible(true)
                     true
                 }
                 R.id.addRecipe -> {
@@ -112,12 +107,11 @@ class HomeActivity : AppCompatActivity() {
                         }
                         else{
                             supportFragmentManager.beginTransaction()
-                                .replace(R.id.mFrameLayout, UnloggedFragment())
+                                .replace(R.id.mFrameLayout, UnloggedAddFragment())
                                 .commit()
                         }
                     })
-                    myMenu.findItem(R.id.logout).setVisible(false)
-                    hideLocalizeIcon()
+                    //hideLocalizeIcon()
                     true
                 }
                 R.id.search -> {
@@ -125,8 +119,7 @@ class HomeActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.mFrameLayout, SearchFragment())
                         .commit()
-                    myMenu.findItem(R.id.logout).setVisible(false)
-                    hideLocalizeIcon()
+                    //hideLocalizeIcon()
                     true
                 }
                 else -> true
@@ -159,46 +152,5 @@ class HomeActivity : AppCompatActivity() {
             .show()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.profile_toolbar, menu)
-        myMenu = menu!!
-        val item = menu!!.findItem(R.id.logout)
-        if (item != null) {
-            item.isVisible = false
-        }
-        return super.onCreateOptionsMenu(menu)
-    }
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.logout -> {
-                Firebase.auth.signOut()
-                SharedPreferenceHelper.saveLikesID(this, "null")
-                SharedPreferenceHelper.saveUserID(this, "null")
-                Toast.makeText(this, "Logout successfully", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, HomeActivity::class.java))
-            }
-
-            R.id.localize -> {
-                if(mToolbar.title=="Recipes"){
-                    LocalizationHelper.changeLanguage(this,"ar")
-                    SharedPreferenceHelper.saveLanguage(this,"ar")
-                }
-
-                else{
-                    LocalizationHelper.changeLanguage(this,"en")
-                    SharedPreferenceHelper.saveLanguage(this,"en")
-
-                }
-            }
-        }
-        return super.onOptionsItemSelected(item)
-
-    }
-
-    fun hideLocalizeIcon(){
-        myMenu.findItem(R.id.localize).setVisible(false)
-    }
 
 }
