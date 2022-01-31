@@ -5,6 +5,6 @@
         android:id="@+id/shareRecipe"
         android:checkable="true"
         android:icon="@drawable/ic_baseline_share_24"
-        android:title="Share"
+        android:title="@string/share"
         app:showAsAction="always" />
 </menu>

@@ -17,7 +17,7 @@ interface LikesService {
     @POST("users/{id}/likes/{lid}/recipe")
     fun addLikedRecipe(@Path("id") uid: String, @Path("lid") lid: String, @Body likedRecipe: LikedRecipe): Call<LikedRecipe>
 
-    @GET("users/{id}/likes/{lid}/recipe")
+    @GET("users/{id}/likes/{lid}/recipe?order=desc&sortBy=id")
     fun getUserLikes(@Path("id") uid: String, @Path("lid") lid: String): Call<List<Recipe>>
 
     @GET("users/{id}/likes/{lid}/recipe")

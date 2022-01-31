@@ -6,19 +6,19 @@ import retrofit2.http.*
 
 interface RecipeService {
 
-    @GET("recipes/?category=drink")
+    @GET("recipes/?category=drink&order=desc&sortBy=id")
     fun getDrinks(): Call<List<Recipe>>
 
-    @GET("recipes/?category=main dish")
+    @GET("recipes/?category=main dish&order=desc&sortBy=id")
     fun getMainDishes(): Call<List<Recipe>>
 
-    @GET("recipes/?category=dessert")
+    @GET("recipes/?category=dessert&order=desc&sortBy=id")
     fun getDessert(): Call<List<Recipe>>
 
-    @GET("recipes")
+    @GET("recipes?order=desc&sortBy=id")
     fun getUserRecipes(@Query("uid") uid: String): Call<List<Recipe>>
 
-    @GET("recipes")
+    @GET("recipes?order=desc&sortBy=id")
     fun getAllRecipes(): Call<List<Recipe>>
 
     @GET("recipes")

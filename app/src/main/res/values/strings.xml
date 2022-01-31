@@ -54,4 +54,11 @@
     <string name="deleted">Deleted!</string>
     <string name="your_recipe_deleted">Your recipe has been deleted!</string>
     <string name="failed_to_delete">Failed to delete</string>
+    <string name="oops">Oops...</string>
+    <string name="signup_to_like_this">Sign up to like this recipe.</string>
+    <string name="share">Share</string>
+    <string name="my_recipes">My Recipes</string>
+    <string name="likes">Likes</string>
+    <string name="change_language">Change Language</string>
+    <string name="logout">Logout</string>
 </resources>

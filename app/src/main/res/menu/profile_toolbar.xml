@@ -5,7 +5,7 @@
     <item
         android:id="@+id/localize"
         android:icon="@drawable/language_ic"
-        android:title="Change Language"
+        android:title="@string/change_language"
         android:visible="true"
         app:showAsAction="always"
         />
@@ -13,7 +13,7 @@
     <item
         android:id="@+id/logout"
         android:icon="@drawable/logout_ic1"
-        android:title="Logout"
+        android:title="@string/logout"
         android:visible="true"
         app:showAsAction="always"
         />

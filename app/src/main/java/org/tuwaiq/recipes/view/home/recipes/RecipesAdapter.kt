@@ -66,8 +66,8 @@ class RecipesAdapter(var data: List<Recipe>) : RecyclerView.Adapter<RecipesAdapt
         holder.btnLike.setOnClickListener {
             if (SharedPreferenceHelper.getUserID(holder.btnLike.context) == "null"){
                 SweetAlertDialog(holder.btnLike.context, SweetAlertDialog.ERROR_TYPE)
-                    .setTitleText("Oops...")
-                    .setContentText("Sign up to like this recipe.")
+                    .setTitleText(holder.btnLike.context.getString(R.string.oops))
+                    .setContentText(holder.btnLike.context.getString(R.string.signup_to_like_this))
                     .show()
             }
             if (holder.btnLike.isSelected()) {
